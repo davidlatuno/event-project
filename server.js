@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var router = require("./controllers/html-controller");
 
 
 var PORT = process.env.PORT || 8080;
@@ -21,6 +22,8 @@ app.set("view engine", "handlebars");
 
 // Import routes
 require("./controllers/user-controller.js")(app);
+
+app.use(router);
 
 
 // Start our server so that it can begin listening to client requests.

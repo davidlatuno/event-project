@@ -123,6 +123,15 @@ $(document).ready(function () {
     ];
 
     var radiusChoices = [0,10,15,20,25];
+    var emailInput = $("#email-input");
+    var passwordInput = $("#password-input");
+    var numberInput = $("#number-input");
+    var favFoodInput = $("#fav-food");
+    var eventType = $("#event-types");
+    var zipcodeInput = $("#zipcode");
+    var radiusInput = $("#radius");
+
+    
     function eventOptions() {
         var rowsToAdd = [];
         for (var i = 0; i < categories.length; i++) {
@@ -161,10 +170,11 @@ $(document).ready(function () {
     radiusOptions();
     $("#user-profile").on("submit", function(){
         event.preventDefault();
-        console.log($("#fav-food").val());
-        console.log($("#event-types").val());
-        console.log($("#zipcode").val());
-        console.log($("#radius").val());
+        var newUser = 
+        function submitUser(data) {
+            $.post("/api/users", data, function() {
+              
+          }
     })
 
     $()

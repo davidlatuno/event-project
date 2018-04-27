@@ -8,8 +8,17 @@ module.exports = function (app) {
         // So we're sending the user back the route to the members page because the redirect will happen on the front end
         // They won't get this or even be able to access this page if they aren't authed
         //res.render("profile");
-        res.json("/profile");
+        db.User.findOne(
+            {
+                where:
+                    { email: req.body.email }
+            }).then(function (data) {
+                console.log(data);
+                res.json("/profile/"+data.id);
+            }); 
     });
+    
+    
     app.post("/api/signup", function (req, res) {
         console.log(req.body);
         db.User.create(req.body).then(function () {
@@ -39,7 +48,7 @@ module.exports = function (app) {
         db.User.findOne(
             {
                 where:
-                    { id: req.params.id }
+                    { email: req.params.id }
             }).then(function (data) {
                 res.json(data);
             })

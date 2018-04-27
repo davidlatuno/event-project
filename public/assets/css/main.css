@@ -2537,9 +2537,7 @@
 #profile-img {
 	max-width: 180px;
 	border: 10px solid #fff;
-	border-radius:50%;
-
-
+	/* border-radius:50%; */
 }
 
 input[type=file] {

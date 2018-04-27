@@ -123,6 +123,9 @@ $(document).ready(function () {
     ];
 
     var radiusChoices = [0,10,15,20,25];
+    
+    var nameInput = $("#name");
+    var profPicture = $("#profile-img");
     var emailInput = $("#email-input");
     var passwordInput = $("#password-input");
     var numberInput = $("#number-input");
@@ -170,10 +173,22 @@ $(document).ready(function () {
     radiusOptions();
     $("#user-profile").on("submit", function(){
         event.preventDefault();
-        
+        var newUser = {
+            name: nameImput.val().trim(),
+            picure: profPicture.val().trim(),
+            email: emailInput.val().trim(),
+            password: passwordInput.val().trim(),
+            phonenumber: numberInput.val().trim(),
+            food: favFoodInput.val().trim(),
+            event: eventType.val().trim(),
+            zipcode: zipcodeInput.val().trim(),
+            radius: radiusInput.val().trim(),
+
+        }
+        submitUser(newUser);
         function submitUser(data) {
             $.post("/api/users", data, function() {
-              
+                window.location.href = "/login";
           })}
     
 

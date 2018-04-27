@@ -1942,7 +1942,7 @@
 		margin: 0 0 1em 0;
 		text-transform: uppercase;
 	}
-
+    input[type="number"],
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -2105,27 +2105,27 @@
 	}
 
 	::-webkit-input-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
 	:-moz-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
 	::-moz-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
 	:-ms-input-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
 	.formerize-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
@@ -3989,4 +3989,4 @@
 			transform: none;
 			opacity: 1;
 			visibility: visible;
-		}
+        }

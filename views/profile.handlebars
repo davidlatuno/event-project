@@ -2,7 +2,7 @@
 <div id="wrapper">
     <!-- Header -->
     <header id="header" class="alt">
-        <span id="user-welcome" class="logo">Welcome {{user.userName}}!</span>
+        
 
 
         <nav>
@@ -11,7 +11,7 @@
     </header>
     <!-- Menu -->
     <nav id="menu">
-        <ul class="links">
+        <ul class="links"></ul>
             <li>
                 <a href="/">Home</a>
             </li>
@@ -29,9 +29,9 @@
 
     <div class="sidenav">
         <div id="image-input" class="major">
-            <span id="user-welcome" class="logo">Welcome Username!</span>
+            <span id="user-welcome" class="logo">Welcome {{user.userName}}!</span>
                 <div>
-                    <img id="profile-img" src="http://placehold.it/180" alt="User Image" style="width:200px" />
+                    <img id="profile-img" src="{{user.picture}}" alt="User Image" style="width:200px" />
                 </div>
         </div>
     </div>

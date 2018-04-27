@@ -122,8 +122,8 @@ $(document).ready(function () {
         }
     ];
 
-    var radiusChoices = [0,10,15,20,25];
-    
+    var radiusChoices = [0, 10, 15, 20, 25];
+
     var nameInput = $("#name");
     var profPicture = $("#profile-img");
     var emailInput = $("#email-input");
@@ -134,12 +134,12 @@ $(document).ready(function () {
     var zipcodeInput = $("#zipcode");
     var radiusInput = $("#radius");
 
-    
+
     function eventOptions() {
         var rowsToAdd = [];
         for (var i = 0; i < categories.length; i++) {
             rowsToAdd.push(createEventRow(categories[i]));
-        } 
+        }
         $("#event-types").append(rowsToAdd);
         $("#event-types").val(name);
 
@@ -157,7 +157,7 @@ $(document).ready(function () {
         var rowsToAdd = [];
         for (var i = 0; i < radiusChoices.length; i++) {
             rowsToAdd.push(createRadiusRow(radiusChoices[i]));
-        } 
+        }
         $("#radius").append(rowsToAdd);
         $("#radius").val(name);
 
@@ -171,7 +171,7 @@ $(document).ready(function () {
     }
 
     radiusOptions();
-    $("#user-profile").on("submit", function(){
+    $("#user-profile").on("submit", function () {
         event.preventDefault();
         var newUser = {
             name: nameImput.val().trim(),
@@ -187,9 +187,9 @@ $(document).ready(function () {
         }
         submitUser(newUser);
         function submitUser(data) {
-            $.post("/api/users", data, function() {
+            $.post("/api/users", data, function () {
                 window.location.href = "/login";
-          })}
-    
-
-})})
+            })
+        }
+    })
+})

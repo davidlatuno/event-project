@@ -16,7 +16,6 @@ router.get("/profile", function(req, res) {
     res.render(path.join(__dirname, "../views/profile"));
 });
 
-<<<<<<< HEAD
 router.post("/yelp", function (req, res) {
     console.log(req.body.keyword)
     client.search({
@@ -32,8 +31,6 @@ router.post("/yelp", function (req, res) {
     });
 })
 
-=======
->>>>>>> a6e3825ff1dceb50042bb73ed42666c50f795944
 router.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../views/index.html"));
 });

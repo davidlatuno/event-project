@@ -170,13 +170,11 @@ $(document).ready(function () {
     radiusOptions();
     $("#user-profile").on("submit", function(){
         event.preventDefault();
-        var newUser = 
+        
         function submitUser(data) {
             $.post("/api/users", data, function() {
               
-          }
-    })
+          })}
+    
 
-    $()
-
-});
+})})

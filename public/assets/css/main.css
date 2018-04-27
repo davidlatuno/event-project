@@ -4026,3 +4026,9 @@ padding-top: 20px;
 			opacity: 1;
 			visibility: visible;
         }
+
+.keywordButtons, .eventInfo {
+    position: relative;
+    width: 800px;
+    margin-left: 25%;
+}

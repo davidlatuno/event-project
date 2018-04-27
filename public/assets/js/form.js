@@ -122,12 +122,24 @@ $(document).ready(function () {
         }
     ];
 
-    var radiusChoices = [0,10,15,20,25];
+    var radiusChoices = [0, 10, 15, 20, 25];
+
+    var nameInput = $("#name");
+    var profPicture = $("#profile-input");
+    var emailInput = $("#email-input");
+    var passwordInput = $("#password-input");
+    var numberInput = $("#number-input");
+    var favFoodInput = $("#fav-food");
+    var eventType = $("#event-types");
+    var zipcodeInput = $("#zipcode");
+    var radiusInput = $("#radius");
+
+
     function eventOptions() {
         var rowsToAdd = [];
         for (var i = 0; i < categories.length; i++) {
             rowsToAdd.push(createEventRow(categories[i]));
-        } 
+        }
         $("#event-types").append(rowsToAdd);
         $("#event-types").val(name);
 
@@ -145,7 +157,7 @@ $(document).ready(function () {
         var rowsToAdd = [];
         for (var i = 0; i < radiusChoices.length; i++) {
             rowsToAdd.push(createRadiusRow(radiusChoices[i]));
-        } 
+        }
         $("#radius").append(rowsToAdd);
         $("#radius").val(name);
 
@@ -159,14 +171,25 @@ $(document).ready(function () {
     }
 
     radiusOptions();
-    $("#user-profile").on("submit", function(){
+    $("#user-profile").on("submit", function () {
         event.preventDefault();
-        console.log($("#fav-food").val());
-        console.log($("#event-types").val());
-        console.log($("#zipcode").val());
-        console.log($("#radius").val());
+        var newUser = {
+            userName: nameInput.val().trim(),
+            picture: profPicture.val().trim(),
+            email: emailInput.val().trim(),
+            password: passwordInput.val().trim(),
+            phonenumber: numberInput.val().trim(),
+            food: favFoodInput.val().trim(),
+            event: eventType.val().trim(),
+            zipcode: zipcodeInput.val().trim(),
+            radius: radiusInput.val().trim(),
+
+        }
+        submitUser(newUser);
+        function submitUser(data) {
+            $.post("/api/signup", data, function () {
+                window.location.href = "/login";
+            })
+        }
     })
-
-    $()
-
-});
+})

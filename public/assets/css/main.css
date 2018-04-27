@@ -2524,7 +2524,44 @@
 			table.alt tfoot {
 				border-top: 0;
 			}
+/* profile page */
+#image-input {
+		
+	padding:40px 60px 0px 30px;
+}
 
+#user-welcome {
+	padding-left: 20px;
+}
+
+#profile-img {
+	max-width: 180px;
+	border: 10px solid #fff;
+	border-radius:50%;
+
+
+}
+
+input[type=file] {
+
+	padding: 10px;
+	width: 120px;
+	background: #32313a;
+	height: 45px;
+
+}
+
+.sidenav {
+height: 100%;
+width: 250px;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: rgb(76, 76, 88);
+overflow-x: hidden;
+padding-top: 20px;
+}
 /* Button */
 
 	input[type="submit"],

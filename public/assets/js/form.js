@@ -125,7 +125,7 @@ $(document).ready(function () {
     var radiusChoices = [0, 10, 15, 20, 25];
 
     var nameInput = $("#name");
-    var profPicture = $("#profile-img");
+    var profPicture = $("#profile-input");
     var emailInput = $("#email-input");
     var passwordInput = $("#password-input");
     var numberInput = $("#number-input");
@@ -174,8 +174,8 @@ $(document).ready(function () {
     $("#user-profile").on("submit", function () {
         event.preventDefault();
         var newUser = {
-            name: nameImput.val().trim(),
-            picure: profPicture.val().trim(),
+            userName: nameInput.val().trim(),
+            picture: profPicture.val().trim(),
             email: emailInput.val().trim(),
             password: passwordInput.val().trim(),
             phonenumber: numberInput.val().trim(),
@@ -187,7 +187,7 @@ $(document).ready(function () {
         }
         submitUser(newUser);
         function submitUser(data) {
-            $.post("/api/users", data, function () {
+            $.post("/api/signup", data, function () {
                 window.location.href = "/login";
             })
         }

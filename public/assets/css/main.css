@@ -1644,7 +1644,7 @@
 /* Type */
 
 	body, input, select, textarea {
-		color: #ffffff;
+		color:#ffffff;
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 17pt;
 		font-weight: 300;
@@ -2106,27 +2106,27 @@
 	}
 
 	::-webkit-input-placeholder {
-		color: white !important;
+		color: grey !important;
 		opacity: 1.0;
 	}
 
 	:-moz-placeholder {
-		color: white !important;
+		color: grey !important;
 		opacity: 1.0;
 	}
 
 	::-moz-placeholder {
-		color: white !important;
+		color: grey !important;
 		opacity: 1.0;
 	}
 
 	:-ms-input-placeholder {
-		color: white !important;
+		color: grey !important;
 		opacity: 1.0;
 	}
 
 	.formerize-placeholder {
-		color: white !important;
+		color: grey !important;
 		opacity: 1.0;
 	}
 
@@ -4026,3 +4026,9 @@ padding-top: 20px;
 			opacity: 1;
 			visibility: visible;
         }
+
+.keywordButtons, .eventInfo {
+    position: relative;
+    width: 800px;
+    margin-left: 25%;
+}

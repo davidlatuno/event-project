@@ -167,4 +167,6 @@ $(document).ready(function () {
         console.log($("#radius").val());
     })
 
+    $()
+
 });

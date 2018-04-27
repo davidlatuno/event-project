@@ -1942,7 +1942,7 @@
 		margin: 0 0 1em 0;
 		text-transform: uppercase;
 	}
-
+    input[type="number"],
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -1963,7 +1963,8 @@
 		outline: 0;
 		padding: 0 1em;
 		text-decoration: none;
-		width: 100%;
+        width: 100%;
+        height: 44px;
 	}
 
 		input[type="text"]:invalid,
@@ -2105,27 +2106,27 @@
 	}
 
 	::-webkit-input-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
 	:-moz-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
 	::-moz-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
 	:-ms-input-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
 	.formerize-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: white !important;
 		opacity: 1.0;
 	}
 
@@ -2523,7 +2524,44 @@
 			table.alt tfoot {
 				border-top: 0;
 			}
+/* profile page */
+#image-input {
+		
+	padding:40px 60px 0px 30px;
+}
 
+#user-welcome {
+	padding-left: 20px;
+}
+
+#profile-img {
+	max-width: 180px;
+	border: 10px solid #fff;
+	border-radius:50%;
+
+
+}
+
+input[type=file] {
+
+	padding: 10px;
+	width: 120px;
+	background: #32313a;
+	height: 45px;
+
+}
+
+.sidenav {
+height: 100%;
+width: 250px;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: rgb(76, 76, 88);
+overflow-x: hidden;
+padding-top: 20px;
+}
 /* Button */
 
 	input[type="submit"],
@@ -3744,7 +3782,7 @@
 	#footer .copyright {
 		font-size: 0.8em;
 		list-style: none;
-		padding-left: 0;
+        padding-left: 0;
 	}
 
 		#footer .copyright li {
@@ -3989,4 +4027,4 @@
 			transform: none;
 			opacity: 1;
 			visibility: visible;
-		}
+        }

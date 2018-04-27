@@ -17,9 +17,9 @@ $(".keywordButtons").on("click", "button", function (event) {
         })
     }
 
-    if(api === "meetup") {
+    if (api === "meetup") {
         $(".eventInfo").empty();
-        $.post("/meetup", keyword).then(function(data) {
+        $.post("/meetup", keyword).then(function (data) {
             var body = data
             for (var i = 0; i < body.length; i++) {
                 // console.log(body);
@@ -28,6 +28,30 @@ $(".keywordButtons").on("click", "button", function (event) {
                 $(".eventInfo").append("<p>" + body[i].status + "</p>");
                 $(".eventInfo").append(body[i].description);
                 $(".eventInfo").append("-------------------")
+            }
+        })
+    }
+
+    if (api === "jambase") {
+        var queryUrl = "http://api.jambase.com/events?zipCode=92101&radius=25&page=0&api_key=jt2vqv49znwfh5kwpc2d4n98"
+
+        $(".eventInfo").empty();
+
+        $.ajax({
+            method: "GET",
+            url: queryUrl
+        }).then(function (data) {
+            console.log(data.Events);
+            for (var i = 0; i < data.Events.length; i++) {
+                $(".eventInfo").append("<p>" + data.Events[i].Date + "</p>");
+                $(".eventInfo").append("<p>" + data.Events[i].Venue.Name + "</p>");
+                $(".eventInfo").append("<p>" + data.Events[i].Venue.Address + "</p>");
+                $(".eventInfo").append("<p>Artists:</p>");
+
+                for (var v = 0; v < data.Events[i].Artists.length; v++) {
+                    $(".eventInfo").append("<p>" + data.Events[i].Artists[v].Name + "</p>");
+                }
+                $(".eventInfo").append("<p><a href=" + data.Events[i].TicketUrl+ ">Ticket Link</a></p>");
             }
         })
     }

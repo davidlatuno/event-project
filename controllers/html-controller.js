@@ -3,17 +3,26 @@ var router = express.Router();
 var path = require("path");
 var yelp = require('yelp-fusion');
 var client = yelp.client("D8cX5oZx77c-eDtSQ3azibBQ-9Hxja6-AGJasBnodqgJfJ5sHAaUBzZWoKp1epqANaWwopf9l_Er0D6IaRTZruXgcUZwFRER47NAObo6KEC2j-xLk0I8M5QTUUPhWnYx");
-
-router.get("/signup", function(req, res) {
+var db = require("./../models");
+router.get("/signup", function (req, res) {
     res.sendFile(path.join(__dirname, "../views/signup.html"));
 })
 
-router.get("/login", function(req, res) {
+router.get("/login", function (req, res) {
     res.sendFile(path.join(__dirname, "../views/login.html"));
 })
 
-router.get("/profile", function(req, res) {
-    res.render(path.join(__dirname, "../views/profile"));
+router.get("/profile/:id", function (req, res) {
+    db.User.findOne({
+        where:
+            { 
+                id: req.params.id }
+        }).then(function (data) {
+            // res.json(data);
+            // console.log(data);
+            res.render("profile", { user: data });
+        });
+
 });
 
 router.post("/yelp", function (req, res) {
@@ -31,7 +40,7 @@ router.post("/yelp", function (req, res) {
     });
 })
 
-router.get("*", function(req, res) {
+router.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 

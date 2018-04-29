@@ -6,12 +6,19 @@ $(".keywordButtons").on("click", "button", function (event) {
     if (api === "yelp") {
         $(".eventInfo").empty();
         $.post("/yelp", keyword).then(function (data) {
+            console.log(data);
 
             for (var i = 0; i < data.length; i++) {
                 var newDiv = $("<div>");
                 newDiv.addClass("events");
                 newDiv.append("<p>Name: " + data[i].name + "</p>")
-                newDiv.append("<p>Address: " + data[i].location.address1 + "</p>")
+                if (data[i].location.address1 !== "") {
+                    newDiv.append("<p>Address: " + data[i].location.address1 + "</p>")
+                } else {
+                    newDiv.append("<p>Address: NO ADDRESS ON FILE</p>")
+                }
+                
+                newDiv.append("<p>Rating: " + data[i].rating + " (Review Count: " + data[i].review_count + ")</p>")
                 newDiv.append("<p><a href=" + data[i].url + ">Yelp Link</a></p>")
                 $(".eventInfo").append(newDiv);
             }

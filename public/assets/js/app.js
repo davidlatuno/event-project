@@ -6,11 +6,14 @@ $(".keywordButtons").on("click", "button", function (event) {
     if (api === "yelp") {
         $(".eventInfo").empty();
         $.post("/yelp", keyword).then(function (data) {
+
             for (var i = 0; i < data.length; i++) {
-                $(".eventInfo").append("<p>" + data[i].name + "</p>")
-                $(".eventInfo").append("<p>" + data[i].phone + "</p>")
-                $(".eventInfo").append("<p><a href=" + data[i].url + ">Yelp Link</a></p>")
-                $(".eventInfo").append("<p>" + data[i].location.address1 + "</p>")
+                var newDiv = $("<div>");
+                newDiv.addClass("events");
+                newDiv.append("<p>Name: " + data[i].name + "</p>")
+                newDiv.append("<p>Address: " + data[i].location.address1 + "</p>")
+                newDiv.append("<p><a href=" + data[i].url + ">Yelp Link</a></p>")
+                $(".eventInfo").append(newDiv);
             }
 
             // location.reload();
@@ -51,7 +54,7 @@ $(".keywordButtons").on("click", "button", function (event) {
                 for (var v = 0; v < data.Events[i].Artists.length; v++) {
                     $(".eventInfo").append("<p>" + data.Events[i].Artists[v].Name + "</p>");
                 }
-                $(".eventInfo").append("<p><a href=" + data.Events[i].TicketUrl+ ">Ticket Link</a></p>");
+                $(".eventInfo").append("<p><a href=" + data.Events[i].TicketUrl + ">Ticket Link</a></p>");
             }
         })
     }

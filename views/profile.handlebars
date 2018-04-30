@@ -2,9 +2,6 @@
 <div id="wrapper">
     <!-- Header -->
     <header id="header" class="alt">
-        
-
-
         <nav>
             <a href="#menu">Menu</a>
         </nav>
@@ -30,9 +27,14 @@
     <div class="sidenav">
         <div id="image-input" class="major">
             <span id="user-welcome" class="logo">Welcome {{user.userName}}!</span>
-                <div>
-                    <img id="profile-img" src="{{user.picture}}" alt="User Image" style="width:200px" />
+                <div class="circular--portrait">
+                    <img id="profile-img" src="{{user.picture}}" alt="User Image"/>
                 </div>
+               
+        </div>
+        <br>
+        <div class="logout">
+              <button type="button" id="logout-button" style="margin-left: 60px;">Log Out</button>
         </div>
     </div>
     <div class="keywordButtons">

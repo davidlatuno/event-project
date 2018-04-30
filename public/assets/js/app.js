@@ -57,3 +57,9 @@ $(".keywordButtons").on("click", "button", function (event) {
     }
 
 })
+
+// Log out button function
+$("#logout-button").on("click", function(){
+    // console.log("logout button working");
+    window.location.href = "/login";
+});

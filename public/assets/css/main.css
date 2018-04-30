@@ -1644,13 +1644,30 @@
 /* Type */
 
 	body, input, select, textarea {
-		color:#ffffff;
+		color: white;
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 17pt;
 		font-weight: 300;
 		letter-spacing: 0.025em;
 		line-height: 1.65;
 	}
+
+	/* select:disabled {
+		color: red;
+	}
+
+	option:disabled {
+		color: red;
+	}
+
+	:disabled {
+		color: red;
+	} */
+
+	   /* select.form-control {
+		color: red;
+	   } */
+
 
 		@media screen and (max-width: 1680px) {
 
@@ -2534,11 +2551,18 @@
 	padding-left: 20px;
 }
 
-#profile-img {
-	max-width: 180px;
-	border: 10px solid #fff;
-	/* border-radius:50%; */
-}
+.circular--portrait {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	border-radius: 50%;
+  }
+  
+  .circular--portrait img {
+	width: 100%;
+	height: auto;
+  }
 
 input[type=file] {
 

@@ -28,6 +28,7 @@ app.use(passport.session());
 
 // Import routes
 require("./controllers/user-controller.js")(app);
+require("./controllers/preferences-controller.js")(app);
 
 app.use(router);
 

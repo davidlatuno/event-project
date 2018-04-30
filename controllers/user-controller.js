@@ -3,7 +3,7 @@ var passport = require("../config/passport");
 
 module.exports = function (app) {
 
-    app.post("/api/login", passport.authenticate("local"), function (req, res) {
+    app.post("/api/login", passport.authenticate("local", { failureFlash: 'Invalid username or password.' }), function (req, res) {
         // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
         // So we're sending the user back the route to the members page because the redirect will happen on the front end
         // They won't get this or even be able to access this page if they aren't authed
@@ -15,10 +15,14 @@ module.exports = function (app) {
             }).then(function (data) {
                 console.log(data);
                 res.json("/profile/"+data.id);
+            }).catch(function (err) {
+                console.log(err);
+                res.status(401).json(err);
+ 
             }); 
     });
-    
-    
+
+
     app.post("/api/signup", function (req, res) {
         console.log(req.body);
         db.User.create(req.body).then(function () {

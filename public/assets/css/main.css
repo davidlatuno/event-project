@@ -4056,10 +4056,6 @@ padding-top: 20px;
     background-color: #777;
     color: white;
     cursor: pointer;
-    width: 100%;
-    border: solid 1px #777;
-    font-size: 15px;
-    margin-top: 20px;
 }
 
 .active, .collapsible:hover {
@@ -4073,8 +4069,6 @@ padding-top: 20px;
     background-color: #f1f1f1;
 }
 
-.meetupLink {
-    color: black;
-    margin-bottom: 30px;
-    font-size: 30px;
+.meetupButton {
+    background-color: #777;
 }

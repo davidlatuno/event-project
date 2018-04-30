@@ -31,19 +31,19 @@ $(".keywordButtons").on("click", "button", function (event) {
         $(".eventInfo").empty();
         $.post("/meetup", keyword).then(function (data) {
             var body = data
+            console.log(body);
             for (var i = 0; i < body.length; i++) {
                 var newDiv = $("<div>");
                 newDiv.addClass("events");
                 newDiv.append("<p>Group Name: " + body[i].name + "</p>");
                 newDiv.append("<p>Status: " + body[i].status + "</p>");
-                var newA = $("<a>");
-                newA.attr("href", body[i].link);
-                newA.attr("target", "_blank");
-                newA.addClass("meetupLink");
-                newA.text("Group Link");
-                // newDiv.append("<p><a href=" + body[i].link + ">Group Link</a></p>");
-                newDiv.append(newA);
-                newDiv.append("<button class='collapsible'>Description</button>")
+                var groupLink = $("<button>");
+                groupLink.attr("data-link", body[i].link);
+                groupLink.addClass("meetupButton button meetupLink");
+                groupLink.text("Group Link");
+                newDiv.append(groupLink);
+                newDiv.append("<button class='button meetupButton meetupEvents' data-urlname=" + body[i].urlname + ">Group Events</button>")
+                newDiv.append("<button class='button collapsible'>Description</button>")
                 newDiv.append("<div class='eventContent'>" + body[i].description + "</div>");
                 $(".eventInfo").append(newDiv);
             }
@@ -85,6 +85,10 @@ $(".keywordButtons").on("click", "button", function (event) {
         } else {
             sibling.css("display", "block")
         }
+    })
+
+    $(".eventInfo").on("click", ".meetupLink", function() {
+        window.open($(this).data("link"), '_blank');
     })
 
 })

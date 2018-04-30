@@ -7,13 +7,7 @@
     <link rel="stylesheet" href="assets/css/main.css"/>
     <link rel="icon" href="https://www.materialui.co/materialIcons/notification/event_available_black_192x192.png" type="image/gif" sizes="16x16">
 </head>
-<style>
-    #main {
-        padding-right: 50px;
-        padding-left: 50px;
-    }
-   
-</style>
+
 <body>
     <!-- Wrapper -->
     <div id="wrapper">
@@ -39,26 +33,28 @@
             </ul>
             <ul class="actions vertical">
                 <li>
-                    <a href="/login" class="button fit">Log In</a>
+                    <a href="/login" class="button fit">Log Out</a>
                 </li>
             </ul>
         </nav>
         <!-- Banner -->
        
         <!-- Main -->
-        <div id="main">
-            <div class="col-md-6">
+        <div id="main-form">
+            <div>
                 <br>
                 <h2 class="text-center">Login Form</h2>
                 <form class="login">
                     <div class="form-group">
                         <label for="email-input">Email address</label>
                         <input type="email" class="form-control newInput" id="email-input" placeholder="Email">
+                        <span class="error-form" id="email_error_message"></span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="password-input">Password</label>
                         <input type="password" class="form-control newInput" id="password-input" placeholder="Password">
+                        <span class="error-form" id="password_error_message"></span>
                     </div>
                     <br>
                     <div id="input-required" class="text-center">
@@ -93,7 +89,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="icon alt fa-github">
+                        <a href="https://github.com/davidlatuno/event-project" class="icon alt fa-github">
                             <span class="label">GitHub</span>
                         </a>
                     </li>
@@ -115,7 +111,6 @@
        <script src="assets/js/jquery.scrollex.min.js"></script>
        <script src="assets/js/skel.min.js"></script>
        <script src="assets/js/util.js"></script>
-       <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
        <script src="assets/js/main.js"></script>
        <script src="assets/js/login.js"></script>
 </body>

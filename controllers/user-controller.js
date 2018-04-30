@@ -15,6 +15,10 @@ module.exports = function (app) {
             }).then(function (data) {
                 console.log(data);
                 res.json("/profile/"+data.id);
+            }).catch(function (err) {
+                console.log(err);
+                res.status(401).json(err);
+ 
             }); 
     });
     

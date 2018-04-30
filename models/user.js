@@ -22,8 +22,10 @@ module.exports = function(sequelize, DataTypes) {
         zipcode: DataTypes.STRING,
         radius: DataTypes.STRING
     });
+    
     User.prototype.validPassword = function(password) {
-        return bcrypt.compareSync(password, this.password);
+     var passwordBool = bcrypt.compareSync(password, this.password);
+      return bcrypt.compareSync(password, this.password);
       };
       // Hooks are automatic methods that run during various phases of the User Model lifecycle
       // In this case, before a User is created, we will automatically hash their password

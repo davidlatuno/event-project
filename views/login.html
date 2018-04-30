@@ -39,7 +39,7 @@
             </ul>
             <ul class="actions vertical">
                 <li>
-                    <a href="/login" class="button fit">Log In</a>
+                    <a href="/login" class="button fit">Log Out</a>
                 </li>
             </ul>
         </nav>
@@ -54,11 +54,13 @@
                     <div class="form-group">
                         <label for="email-input">Email address</label>
                         <input type="email" class="form-control newInput" id="email-input" placeholder="Email">
+                        <span class="error-form" id="email_error_message">Testuser</span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="password-input">Password</label>
                         <input type="password" class="form-control newInput" id="password-input" placeholder="Password">
+                        <span class="error-form" id="password_error_message">Testpassword</span>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-default">Login</button>
@@ -90,7 +92,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="icon alt fa-github">
+                        <a href="https://github.com/davidlatuno/event-project" class="icon alt fa-github">
                             <span class="label">GitHub</span>
                         </a>
                     </li>
@@ -112,7 +114,6 @@
        <script src="assets/js/jquery.scrollex.min.js"></script>
        <script src="assets/js/skel.min.js"></script>
        <script src="assets/js/util.js"></script>
-       <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
        <script src="assets/js/main.js"></script>
        <script src="assets/js/login.js"></script>
 </body>

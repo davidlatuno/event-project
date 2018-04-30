@@ -238,7 +238,7 @@ $(document).ready(function () {
             food: favFoodInput.val().trim(),
             event: eventType.val(),
             zipcode: zipcodeInput.val().trim(),
-            radius: radiusInput.val(),
+            radius: radiusInput.val()
         }
         // call validate function
         var validateFlag = validateForm();

@@ -14,17 +14,12 @@ module.exports = function (app) {
                     { email: req.body.email }
             }).then(function (data) {
                 console.log(data);
-<<<<<<< HEAD
-                res.json("/profile/" + data.id);
-            });
-=======
                 res.json("/profile/"+data.id);
             }).catch(function (err) {
                 console.log(err);
                 res.status(401).json(err);
  
             }); 
->>>>>>> f41895aa7a5db341be5777683553782be30a0da0
     });
 
 

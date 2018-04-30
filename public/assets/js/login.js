@@ -20,28 +20,17 @@ $(document).ready(function () {
         };
 
         if (!userData.email || !userData.password) {
-<<<<<<< HEAD
-           return;
-=======
         // call basic validation functions
             emailBasicValidation();
             passwordBasicValidation();
             return;
->>>>>>> f41895aa7a5db341be5777683553782be30a0da0
         }
         else {
         // If we have an email and password we run the loginUser function and clear the form
-<<<<<<< HEAD
-        loginUser(userData.email, userData.password);
-        emailInput.val("");
-        passwordInput.val("");
-
-=======
             loginUser(userData.email, userData.password);
             emailInput.val("");
             passwordInput.val("");
         }
->>>>>>> f41895aa7a5db341be5777683553782be30a0da0
     });
 
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page

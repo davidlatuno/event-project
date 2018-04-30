@@ -276,25 +276,26 @@ eventOptions();
 function renderButtons() {
     $(".usersKeywordButtons").empty();
     $.get("/api/users/" + $("#user-id").text(), function (data) {
-        var buttonsToAdd = [];
         var food = data[0].food;
         var event = data[0].event;
-        buttonsToAdd.push(food);
-        buttonsToAdd.push(event);
-        for (var i = 0; i < buttonsToAdd.length; i++) {
-            var newButton = $("<button>");
-            newButton.attr("type", "button");
-            newButton.attr("data-api", "yelp");
-            newButton.attr("data-event", buttonsToAdd[i]);
-            newButton.html(buttonsToAdd[i]);
-            $(".usersKeywordButtons").append(newButton);
-        }
+        var newFoodButton = $("<button>");
+        newFoodButton.attr("type", "button");
+        newFoodButton.attr("data-api", "yelp");
+        newFoodButton.attr("data-event", food);
+        newFoodButton.html(food);
+        $(".usersKeywordButtons").append(newFoodButton);
+        var newEventButton = $("<button>");
+        newEventButton.attr("type", "button");
+        newEventButton.attr("data-api", "meetup");
+        newEventButton.attr("data-event", event);
+        newEventButton.html(event);
+        $(".usersKeywordButtons").append(newEventButton);
     }).then(function () {
         $.get("/api/preferences/" + $("#user-id").text(), function (data) {
             for (var i = 0; i < data.length; i++) {
                 var newButton = $("<button>");
                 newButton.attr("type", "button");
-                newButton.attr("data-api", "yelp");
+                newButton.attr("data-api", data[i].api);
                 newButton.attr("data-event", data[i].keyword);
                 newButton.html(data[i].keyword);
                 $(".usersKeywordButtons").append(newButton);
@@ -312,7 +313,8 @@ $(document).ready(function () {
         var preference = $("#preference").val().trim();
         var newPreference = {
             UserId: parseInt($("#user-id").text()),
-            keyword: preference
+            keyword: preference,
+            api: "yelp"
         }
         $.post("/api/preferences", newPreference, function () {
             window.reload;
@@ -326,11 +328,12 @@ $(document).ready(function () {
         var event = $("#event-types option:selected").val();
         var newEvent = {
             UserId: parseInt($("#user-id").text()),
-            keyword: event
+            keyword: event,
+            api: "meetup"
         }
         $.post("/api/preferences", newEvent, function () {
             window.reload;
-        }).then(function(){
+        }).then(function () {
             renderButtons();
         })
 
@@ -339,7 +342,7 @@ $(document).ready(function () {
 });
 
 // Log out button function
-$("#logout-button").on("click", function(){
+$("#logout-button").on("click", function () {
     // console.log("logout button working");
     window.location.href = "/login";
 });

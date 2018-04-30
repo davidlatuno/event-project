@@ -4038,6 +4038,7 @@ padding-top: 20px;
 }
 
 .events {
+    margin-bottom: 30px;
     text-align: center;
     background: white;
     border-radius: 5px;
@@ -4055,12 +4056,10 @@ padding-top: 20px;
     background-color: #777;
     color: white;
     cursor: pointer;
-    padding: 18px;
     width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
+    border: solid 1px #777;
     font-size: 15px;
+    margin-top: 20px;
 }
 
 .active, .collapsible:hover {
@@ -4072,4 +4071,10 @@ padding-top: 20px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+}
+
+.meetupLink {
+    color: black;
+    margin-bottom: 30px;
+    font-size: 30px;
 }

@@ -121,7 +121,6 @@ $(document).ready(function () {
             "shortname": "Spirituality"
         }
     ];
-
     var radiusChoices = [0, 10, 15, 20, 25];
 
     var nameInput = $("#name");

@@ -1651,6 +1651,13 @@
 		letter-spacing: 0.025em;
 		line-height: 1.65;
 	}
+	
+	select option{
+		background-color: rgb(76, 76, 88);
+	}
+	select option{
+		color: #fff;
+	}
 
 		@media screen and (max-width: 1680px) {
 
@@ -1989,6 +1996,10 @@
 			border-color: #9bf1ff;
 			box-shadow: 0 0 0 2px #9bf1ff;
 		}
+		
+		.error{
+			box-shadow: 0 0 0 1px red;
+		}
 
 	.select-wrapper {
 		text-decoration: none;
@@ -2129,7 +2140,11 @@
 		color: white !important;
 		opacity: 1.0;
 	}
+/* error messages */
+.error-form{
+	color: rgba(255, 0, 0, 0.938);
 
+}
 /* Box */
 
 	.box {
@@ -2532,6 +2547,8 @@
 
 #user-welcome {
 	padding-left: 20px;
+	font-size:20px;
+	font-weight:600;
 }
 
 #profile-img {
@@ -2556,7 +2573,7 @@ position: fixed;
 z-index: 1;
 top: 0;
 left: 0;
-background-color: rgb(76, 76, 88);
+background-color: rgb(113, 113, 124);
 overflow-x: hidden;
 padding-top: 20px;
 }

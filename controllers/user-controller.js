@@ -1,6 +1,22 @@
 var db = require("../models");
 var passport = require("../config/passport");
 
+function sendMessage() {
+    var accountSid = 'ACd8e51c3388f3e1d5df5cf6f0a9f0bd73'; // Your Account SID from www.twilio.com/console
+    var authToken = 'b7fde894c4a9f5e2be1877930468e51a';   // Your Auth Token from www.twilio.com/console
+
+    var twilio = require('twilio');
+    var client = new twilio(accountSid, authToken);
+
+    client.messages.create({
+        body: 'Welcome to EventSMS! If you want, we will send you a daily message with an event you may be intereseted in. If you dont want this feature, reply NO',
+        to: '+16197883033',  // Text this number
+        from: '+16193832471' // From a valid Twilio number
+    })
+        .then((message) => console.log(message.sid));
+
+}
+
 module.exports = function (app) {
 
     app.post("/api/login", passport.authenticate("local", { failureFlash: 'Invalid username or password.' }), function (req, res) {
@@ -13,19 +29,19 @@ module.exports = function (app) {
                 where:
                     { email: req.body.email }
             }).then(function (data) {
-                console.log(data);
-                res.json("/profile/"+data.id);
+                res.json("/profile/" + data.id);
             }).catch(function (err) {
                 console.log(err);
                 res.status(401).json(err);
- 
-            }); 
+
+            });
     });
 
 
     app.post("/api/signup", function (req, res) {
         console.log(req.body);
         db.User.create(req.body).then(function () {
+            sendMessage();
             res.send("/login");
         }).catch(function (err) {
             console.log(err);

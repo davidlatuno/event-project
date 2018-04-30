@@ -204,7 +204,6 @@ eventOptions();
 function renderButtons() {
     $(".usersKeywordButtons").empty();
     $.get("/api/users/" + $("#user-id").text(), function (data) {
-        console.log(data);
         var buttonsToAdd = [];
         var food = data[0].food;
         var event = data[0].event;
@@ -220,9 +219,7 @@ function renderButtons() {
         }
     }).then(function () {
         $.get("/api/preferences/" + $("#user-id").text(), function (data) {
-            console.log(data);
             for (var i = 0; i < data.length; i++) {
-                console.log(data[i].keyword);
                 var newButton = $("<button>");
                 newButton.attr("type", "button");
                 newButton.attr("data-api", "yelp");

@@ -253,14 +253,14 @@ var categories = [
     }
 ];
 
-var eventType = $("#event-types");
+var eventType = $("#event-type");
 function eventOptions() {
     var rowsToAdd = [];
     for (var i = 0; i < categories.length; i++) {
         rowsToAdd.push(createEventRow(categories[i]));
     }
-    $("#event-types").append(rowsToAdd);
-    $("#event-types").val(name);
+    $("#event-type").append(rowsToAdd);
+    $("#event-type").val(name);
 
 };
 

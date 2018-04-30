@@ -45,10 +45,10 @@ module.exports = function (app) {
         })
     })
     app.get("/api/users/:id", function (req, res) {
-        db.User.findOne(
+        db.User.findAll(
             {
                 where:
-                    { email: req.params.id }
+                    { id: req.params.id }
             }).then(function (data) {
                 res.json(data);
             })

@@ -201,48 +201,68 @@ function createEventRow(categories) {
 
 eventOptions();
 
+function renderButtons() {
+    $(".usersKeywordButtons").empty();
+    $.get("/api/users/" + $("#user-id").text(), function (data) {
+        console.log(data);
+        var buttonsToAdd = [];
+        var food = data[0].food;
+        var event = data[0].event;
+        buttonsToAdd.push(food);
+        buttonsToAdd.push(event);
+        for (var i = 0; i < buttonsToAdd.length; i++) {
+            var newButton = $("<button>");
+            newButton.attr("type", "button");
+            newButton.attr("data-api", "yelp");
+            newButton.attr("data-event", buttonsToAdd[i]);
+            newButton.html(buttonsToAdd[i]);
+            $(".usersKeywordButtons").append(newButton);
+        }
+    }).then(function () {
+        $.get("/api/preferences/" + $("#user-id").text(), function (data) {
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].keyword);
+                var newButton = $("<button>");
+                newButton.attr("type", "button");
+                newButton.attr("data-api", "yelp");
+                newButton.attr("data-event", data[i].keyword);
+                newButton.html(data[i].keyword);
+                $(".usersKeywordButtons").append(newButton);
+            }
+
+        })
+    })
+
+}
+renderButtons();
+
 $(document).ready(function () {
     $("#new-food-preference").on("submit", function (event) {
         event.preventDefault();
         var preference = $("#preference").val().trim();
-        var newButton = $("<button>");
-        newButton.attr("type", "button");
-        newButton.attr("data-api", "yelp");
-        newButton.attr("data-event", preference);
-        newButton.html(preference);
-        $(".keywordButtons").append(newButton);
         var newPreference = {
             UserId: parseInt($("#user-id").text()),
             keyword: preference
         }
-        $.post("/api/preferences", newPreference, function(){
+        $.post("/api/preferences", newPreference, function () {
             window.reload;
+        }).then(function () {
+            renderButtons();
         })
-
-
-
-
-
-
     });
 
     $("#new-event-type").on("submit", function (event) {
         event.preventDefault();
-
         var event = $("#event-types option:selected").val();
-        //var event = "Career & Business";
-        var newButton = $("<button>");
-        newButton.attr("type", "button");
-        newButton.attr("data-api", "meetup");
-        newButton.attr("data-event", event);
-        newButton.html(event);
-        $(".keywordButtons").append(newButton);
         var newEvent = {
             UserId: parseInt($("#user-id").text()),
             keyword: event
         }
-        $.post("/api/preferences", newEvent, function(){
+        $.post("/api/preferences", newEvent, function () {
             window.reload;
+        }).then(function(){
+            renderButtons();
         })
 
     })

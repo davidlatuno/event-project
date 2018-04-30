@@ -6,7 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-   
+    <link rel="icon" href="https://www.materialui.co/materialIcons/notification/event_available_black_192x192.png" type="image/gif"
+        sizes="16x16">
 </head>
 
 <body>
@@ -40,7 +41,7 @@
         </nav>
         <!-- Main -->
         <div id="main-form">
-            <div class="col-md-6">
+            <div>
                 <br>
                 <h2 class="text-center">Sign Up</h2>
                 <form class="login" id="user-profile">
@@ -48,53 +49,62 @@
                         <label for="profile-input">Image (URL)
                         </label>
                         <input placeholder="Profile Image" type="text" class="form-control" id="profile-input">
+                        <span class="error-form" id="profileimg_error_message"></span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="name">Name
                         </label>
                         <input placeholder="Name" type="text" class="form-control" id="name">
+                        <span class="error-form" id="username_error_message"></span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="email-input">Email address</label>
-                        <input type="email" class="form-control" id="email-input" placeholder="Email">
+                        <input type="email" class="form-control" id="email-input" placeholder="someone@example.com">
+                        <span class="error-form" id="email_error_message"></span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="password-input">Password</label>
                         <input type="password" class="form-control" id="password-input" placeholder="Password">
+                        <span class="error-form" id="password_error_message"></span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="number-input">Phone Number</label>
-                        <input type="number" class="form-control" id="number-input" placeholder="Phone Number">
+                        <input type="tel" class="form-control" id="number-input" placeholder="555-555-5555">
+                        <span class="error-form" id="phonenum_error_message"></span>
                     </div>
                     <br>
                     <div class="form-group">
-                        <label for="fav-food">1. What is your favorite type of food?:</label>
+                        <label for="fav-food">1. What is your favorite type of food?</label>
                         <input placeholder="Favorite Food" type="text" class="form-control" id="fav-food">
+                        <span class="error-form" id="favfood_error_message"></span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="event-types">2. What kind of events are you interested in?
                         </label>
-                        <select id="event-types" name="event-type" class="form-control" style="color:gray">
+                        <select id="event-types" name="event-type" class="form-control">
                             <option class="selectPh" value="" selected disabled hidden>Choose a category</option>
+                            <span class="error-form" id="select_error_message"></span>
                         </select>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="zipcode">3. What's your zipcode?
                         </label>
-                        <input placeholder="Zipcode" type="number" class="form-control" id="zipcode">
+                        <input placeholder="zipcode" type="text" class="form-control" id="zipcode">
+                        <span class="error-form" id="zipcode_error_message"></span>
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="radius">4. How far are you willing to travel for restaurants/events? (Up to 25miles)
                         </label>
-                        <select id="radius" name="radius" class="form-control" style="color:gray">
+                        <select id="radius" name="radius" class="form-control">
                             <option class="selectPh" value="" selected disabled hidden>Radius</option>
+                            <span class="error-form" id="travel_error_message"></span>
                         </select>
                     </div>
                     <br>
@@ -126,7 +136,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="icon alt fa-github">
+                        <a href="https://github.com/davidlatuno/event-project" class="icon alt fa-github">
                             <span class="label">GitHub</span>
                         </a>
                     </li>
@@ -148,7 +158,6 @@
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/skel.min.js"></script>
     <script src="assets/js/util.js"></script>
-    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/form.js"></script>
 </body>

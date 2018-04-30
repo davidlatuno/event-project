@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     var categories = [
         {
             "name": "Arts & Culture",
@@ -133,7 +134,25 @@ $(document).ready(function () {
     var zipcodeInput = $("#zipcode");
     var radiusInput = $("#radius");
 
+    //======================================= VALIDATION CODE =======================================================
+    //--------------------------------------hiding all error messages------------------------------------------------
+    $("#username_error_message").hide();
+    $("#password_error_message").hide();
+    $("#zipcode_error_message").hide();
+    $("#email_error_message").hide();
+    $("#phonenum_error_message").hide();
+    $("#profileimg_error_message").hide();
+    $("#favfood_error_message").hide();
 
+    // global variables to hold boolean values initially
+    var error_username  = false;
+    var error_password  = false;
+    var error_email     = false;
+    var error_number    = false;
+    var error_zipcode   = false;
+    var error_url       = false;
+
+    // =============================================================================================================
     function eventOptions() {
         var rowsToAdd = [];
         for (var i = 0; i < categories.length; i++) {
@@ -141,7 +160,6 @@ $(document).ready(function () {
         }
         $("#event-types").append(rowsToAdd);
         $("#event-types").val(name);
-
     };
 
     function createEventRow(categories) {
@@ -152,6 +170,7 @@ $(document).ready(function () {
     }
 
     eventOptions();
+
     function radiusOptions() {
         var rowsToAdd = [];
         for (var i = 0; i < radiusChoices.length; i++) {
@@ -170,8 +189,45 @@ $(document).ready(function () {
     }
 
     radiusOptions();
+    
+//=================================================================================================================
+// on focusout call validate field functions
+
+     profPicture.focusout(function () {
+        checkURL();
+    });
+    
+    nameInput.focusout(function () {
+        checkName();
+    });
+
+    emailInput.focusout(function () {
+        checkEmail();
+    });
+    
+    passwordInput.focusout(function () {
+        checkPassword();
+    });
+    
+    numberInput.focusout(function () {
+        checkPhNumber();
+    });
+    
+    favFoodInput.focusout(function () {
+        requiredFavFood();
+    });
+    
+    zipcodeInput.focusout(function () {
+        checkZipcode();
+    });
+    
+    
+// =============================================================================================================
+   
+// on submit 
     $("#user-profile").on("submit", function () {
         event.preventDefault();
+
         var newUser = {
             userName: nameInput.val().trim(),
             picture: profPicture.val().trim(),
@@ -179,16 +235,165 @@ $(document).ready(function () {
             password: passwordInput.val().trim(),
             phonenumber: numberInput.val().trim(),
             food: favFoodInput.val().trim(),
-            event: eventType.val().trim(),
+            event: eventType.val(),
             zipcode: zipcodeInput.val().trim(),
-            radius: radiusInput.val().trim(),
-
+            radius: radiusInput.val()
         }
-        submitUser(newUser);
-        function submitUser(data) {
-            $.post("/api/signup", data, function () {
+        // call validate function
+        var validateFlag = validateForm();
+        console.log(validateFlag);
+        
+        if (validateFlag) {
+            $.post("/api/signup", newUser, function () {
                 window.location.href = "/login";
-            })
+            });
+        }
+        else {
+            emptyFields();
         }
     })
+
+    //=========================================-VALIDATION FUNCTION-=============================================
+    function validateForm() {
+        error_url       = false;
+        error_username  = false;
+        error_email     = false;
+        error_number    = false;
+        error_password  = false;
+        error_eventType = false;
+        error_favFood   = false;
+        error_zipcode   = false;
+
+        checkURL();
+        checkName();
+        checkEmail();
+        checkPassword();
+        checkPhNumber();
+        checkZipcode();
+       
+        if (error_username == false && error_url == false && error_email == false && error_number == false && error_password == false && error_zipcode == false) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+//========================================field functions===============================================================
+// validate name
+    function checkName() {
+        var username = nameInput.val();
+        
+        if (username != username.match(/^[a-zA-Z\s]+$/)) {
+            $("#username_error_message").html("Only characters and spaces are allowed");
+            $("#username_error_message").show();
+            nameInput.addClass('error');
+            error_username = true;
+        }
+        else {
+            nameInput.removeClass('error');
+            $("#username_error_message").hide();
+        }
+    }
+// password validate
+    function checkPassword() {
+        var password_length = passwordInput.val().length;
+        
+        if (password_length < 8) {
+            $("#password_error_message").html("At least 8 characters required");
+            $("#password_error_message").show();
+            passwordInput.addClass("error");
+            error_password = true;
+        }
+        else {
+            passwordInput.removeClass("error");
+            $("#password_error_message").hide();
+        }
+    }
+//  check for valid email
+    function checkEmail() {
+        var pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+        
+        if (pattern.test(emailInput.val())) {
+            emailInput.removeClass("error");
+            $("#email_error_message").hide();
+        }
+        else {
+            $("#email_error_message").html("Enter valid email address");
+            $("#email_error_message").show();
+            emailInput.addClass("error");
+            error_email = true;
+        }
+    }
+// check for valid phone number
+    function checkPhNumber() {
+        var pattern = new RegExp(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/i);
+        
+        if (pattern.test(numberInput.val())) {
+            $("#phonenum_error_message").hide();
+            numberInput.removeClass('error');
+        }
+        else {
+            $("#phonenum_error_message").html("Enter valid phone number");
+            $("#phonenum_error_message").show();
+            numberInput.addClass('error');
+            error_number = true;
+        }
+    }
+//  check for valid zipcode
+    function checkZipcode() {
+        var pattern = new RegExp(/^[0-9]{5}$/i);
+        
+        if (pattern.test(zipcodeInput.val())) {
+            $("#zipcode_error_message").hide();
+            zipcodeInput.removeClass('error');
+        }
+        else {
+            $("#zipcode_error_message").html("Enter valid zipcode");
+            $("#zipcode_error_message").show();
+            zipcodeInput.addClass('error');
+            error_zipcode = true;
+        }
+    }
+// check url
+    function checkURL() {
+        var pattern = new RegExp(/^(http|https|ftp):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i);
+    
+        if (pattern.test(profPicture.val())) {
+            $("#profileimg_error_message").hide();
+            profPicture.removeClass("error");
+        }
+        else {
+            $("#profileimg_error_message").html("Enter valid URL address");
+            $("#profileimg_error_message").show();
+            profPicture.addClass('error');
+            error_url = true;
+        }
+    }
+// fav food field validation
+    function requiredFavFood() {
+        if (favFoodInput.val() === "") {
+            $("#favfood_error_message").html("Field required");
+            favFoodInput.addClass("error");
+            $("#favfood_error_message").show();
+        }
+        else {
+            favFoodInput.removeClass("error");
+            $("#favfood_error_message").hide();
+        }
+    }
+
+// empty all input fields
+
+    function emptyFields() {
+        $("#name").val("");
+        $("#profile-input").val("");
+        $("#email-input").val("");
+        $("#password-input").val("");
+        $("#number-input").val("");
+        $("#fav-food").val("");
+        $("#event-types").val("");
+        $("#zipcode").val("");
+        $("#radius").val("");
+    }
 })

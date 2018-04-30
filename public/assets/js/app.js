@@ -32,12 +32,15 @@ $(".keywordButtons").on("click", "button", function (event) {
         $.post("/meetup", keyword).then(function (data) {
             var body = data
             for (var i = 0; i < body.length; i++) {
-                // console.log(body);
-                $(".eventInfo").append("<p>" + body[i].name + "</p>");
-                $(".eventInfo").append("<p>" + body[i].link + "</p>");
-                $(".eventInfo").append("<p>" + body[i].status + "</p>");
-                $(".eventInfo").append(body[i].description);
-                $(".eventInfo").append("-------------------")
+                var newDiv = $("<div>");
+                newDiv.addClass("events");
+                newDiv.append("<p>Group Name: " + body[i].name + "</p>");
+                newDiv.append("<p>Status: " + body[i].status + "</p>");
+                newDiv.append("<p><a href=" + body[i].link + ">Group Link</a></p>");
+
+                newDiv.append("<button class='collapsible'>Description</button>")
+                newDiv.append("<div class='eventContent'>" + body[i].description + "</div>");
+                $(".eventInfo").append(newDiv);
             }
         })
     }
@@ -65,5 +68,15 @@ $(".keywordButtons").on("click", "button", function (event) {
             }
         })
     }
+
+    $(".eventInfo").on("click", ".collapsible", function() {
+        $(this).toggleClass("active");
+        var sibling = $(this).next()
+        if(sibling.css("display") === "block") {
+            sibling.css("display", "none");
+        } else {
+            sibling.css("display", "block")
+        }
+    })
 
 })

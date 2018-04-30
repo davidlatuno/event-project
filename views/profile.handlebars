@@ -30,7 +30,7 @@
     <div class="sidenav">
         <div id="image-input" class="major">
             <span id="user-welcome" class="logo">Welcome {{user.userName}}!</span>
-            <span id="user-id">{{user.id}}</span>
+            <span id="user-id" style="display:none">{{user.id}}</span>
             <div>
                 <img id="profile-img" src="{{user.picture}}" alt="User Image" style="width:200px" />
             </div>
@@ -45,8 +45,8 @@
                     <label for="new-preference">Add event category to your preferences!
                     </label>
                     <select id="event-types" name="event-type" class="form-control" style="color:gray">
-                            <option class="selectPh" value="" >Choose a category</option>
-                        </select>
+                        <option class="selectPh" value="">Choose a category</option>
+                    </select>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
 
@@ -56,10 +56,8 @@
         </div>
     </div>
     <div class="keywordButtons">
-        <button type="button" data-api="yelp" data-event="{{user.food}}">{{user.food}}</button>
-        <button type="button" data-api="meetup" data-event="{{user.event}}">{{user.event}}</button>
         <button type="button" data-api="jambase" data-event="">Music Events Near Me</button>
-
+        <div class="usersKeywordButtons"></div>
     </div>
     <div class="eventInfo">
 

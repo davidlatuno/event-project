@@ -5,6 +5,7 @@ var router2 = require("./controllers/events_controller")
 var session = require("express-session");
 var passport = require("./config/passport");
 
+
 var PORT = process.env.PORT || 8080;
 
 var app = express();

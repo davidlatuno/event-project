@@ -6,6 +6,11 @@ module.exports = function (app) {
             console.log(data);
             res.end();
         })
+    });
+    app.get("/api/preferences/:id", function(req, res){
+        db.Preference.findAll({where: {UserId: req.params.id}}).then(function(preferences){
+            res.json(preferences);
+        })
     })
 
 }

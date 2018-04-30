@@ -20,13 +20,13 @@ $(document).ready(function () {
         };
 
         if (!userData.email || !userData.password) {
-        // call basic validation functions
+            // call basic validation functions
             emailBasicValidation();
             passwordBasicValidation();
             return;
         }
         else {
-        // If we have an email and password we run the loginUser function and clear the form
+            // If we have an email and password we run the loginUser function and clear the form
             loginUser(userData.email, userData.password);
             emailInput.val("");
             passwordInput.val("");
@@ -41,6 +41,7 @@ $(document).ready(function () {
         }).then(function (data) {
             // console.log(data);
             window.location.replace(data);
+            sessionStorage.setItem("email", email);
         }).fail(function (err) {
             $("#email_error_message").html("invalid email");
             emailInput.addClass("error");
@@ -50,7 +51,7 @@ $(document).ready(function () {
             passwordInput.addClass("error");
             $("#password_error_message").show();
             error_password = true;
-            
+
         });
 
     }

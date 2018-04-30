@@ -327,7 +327,7 @@ $(document).ready(function () {
     }
 // check for valid phone number
     function checkPhNumber() {
-        var pattern = new RegExp(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/i);
+        var pattern = new RegExp(/^[0-9]{3}[0-9]{3}[0-9]{4}$/i);
         
         if (pattern.test(numberInput.val())) {
             $("#phonenum_error_message").hide();

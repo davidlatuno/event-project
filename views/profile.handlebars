@@ -2,7 +2,7 @@
 <div id="wrapper">
     <!-- Header -->
     <header id="header" class="alt">
-        
+
 
 
         <nav>
@@ -12,12 +12,12 @@
     <!-- Menu -->
     <nav id="menu">
         <ul class="links"></ul>
-            <li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-                <a href="/signup">Signup</a>
-            </li>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/signup">Signup</a>
+        </li>
         </ul>
         <ul class="actions vertical">
             <li>
@@ -30,15 +30,36 @@
     <div class="sidenav">
         <div id="image-input" class="major">
             <span id="user-welcome" class="logo">Welcome {{user.userName}}!</span>
-                <div>
-                    <img id="profile-img" src="{{user.picture}}" alt="User Image" style="width:200px" />
-                </div>
+            <span id="user-id">{{user.id}}</span>
+            <div>
+                <img id="profile-img" src="{{user.picture}}" alt="User Image" style="width:200px" />
+            </div>
+            <div class="form-group">
+                <form id="new-food-preference">
+                    <label for="new-preference">Add new food/business to your preferences!
+                    </label>
+                    <input id="preference">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <form id="new-event-type">
+                    <label for="new-preference">Add event category to your preferences!
+                    </label>
+                    <select id="event-types" name="event-type" class="form-control" style="color:gray">
+                            <option class="selectPh" value="" >Choose a category</option>
+                        </select>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+
+
+
+            </div>
         </div>
     </div>
     <div class="keywordButtons">
-        <button type="button" data-api="yelp" data-event="hiking">Hiking</button>
-        <button type="button" data-api="meetup" data-event="Dancing">Dancing</button>
+        <button type="button" data-api="yelp" data-event="{{user.food}}">{{user.food}}</button>
+        <button type="button" data-api="meetup" data-event="{{user.event}}">{{user.event}}</button>
         <button type="button" data-api="jambase" data-event="">Music Events Near Me</button>
+
     </div>
     <div class="eventInfo">
 

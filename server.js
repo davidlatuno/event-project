@@ -1,8 +1,10 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var router = require("./controllers/html-controller");
+var router2 = require("./controllers/events_controller")
 var session = require("express-session");
 var passport = require("./config/passport");
+
 
 var PORT = process.env.PORT || 8080;
 
@@ -30,6 +32,8 @@ require("./controllers/user-controller.js")(app);
 require("./controllers/preferences-controller.js")(app);
 
 app.use(router);
+
+app.use(router2);
 
 
 // Start our server so that it can begin listening to client requests.

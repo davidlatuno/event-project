@@ -6,11 +6,21 @@ $(".keywordButtons").on("click", "button", function (event) {
     if (api === "yelp") {
         $(".eventInfo").empty();
         $.post("/yelp", keyword).then(function (data) {
+            console.log(data);
+
             for (var i = 0; i < data.length; i++) {
-                $(".eventInfo").append("<p>" + data[i].name + "</p>")
-                $(".eventInfo").append("<p>" + data[i].phone + "</p>")
-                $(".eventInfo").append("<p><a href=" + data[i].url + ">Yelp Link</a></p>")
-                $(".eventInfo").append("<p>" + data[i].location.address1 + "</p>")
+                var newDiv = $("<div>");
+                newDiv.addClass("events");
+                newDiv.append("<p>Name: " + data[i].name + "</p>")
+                if (data[i].location.address1 !== "") {
+                    newDiv.append("<p>Address: " + data[i].location.address1 + "</p>")
+                } else {
+                    newDiv.append("<p>Address: NO ADDRESS ON FILE</p>")
+                }
+
+                newDiv.append("<p>Rating: " + data[i].rating + " (Review Count: " + data[i].review_count + ")</p>")
+                newDiv.append("<p><a href=" + data[i].url + "target='_blank'>Yelp Link</a></p>")
+                $(".eventInfo").append(newDiv);
             }
 
             // location.reload();
@@ -21,14 +31,25 @@ $(".keywordButtons").on("click", "button", function (event) {
         $(".eventInfo").empty();
         $.post("/meetup", keyword).then(function (data) {
             var body = data
+            console.log(body);
             for (var i = 0; i < body.length; i++) {
-                // console.log(body);
-                $(".eventInfo").append("<p>" + body[i].name + "</p>");
-                $(".eventInfo").append("<p>" + body[i].link + "</p>");
-                $(".eventInfo").append("<p>" + body[i].status + "</p>");
-                $(".eventInfo").append(body[i].description);
-                $(".eventInfo").append("-------------------")
+                var newDiv = $("<div>");
+                newDiv.addClass("events");
+                newDiv.append("<p>Group Name: " + body[i].name + "</p>");
+                newDiv.append("<p>Status: " + body[i].status + "</p>");
+                var groupLink = $("<button>");
+                groupLink.attr("data-link", body[i].link);
+                groupLink.addClass("meetupButton button meetupLink");
+                groupLink.text("Group Link");
+                newDiv.append(groupLink);
+                newDiv.append("<button class='button meetupButton meetupEvents' data-urlname=" + body[i].urlname + " data-click='0'>Upcoming Events</button>")
+                newDiv.append("<button class='button collapsible'>Description</button>")
+                newDiv.append("<div class='groupContent'>" + body[i].description + "</div>");
+                newDiv.append("<div class='groupEvents'></div>")
+                $(".eventInfo").append(newDiv);
+
             }
+
         })
     }
 
@@ -43,18 +64,69 @@ $(".keywordButtons").on("click", "button", function (event) {
         }).then(function (data) {
             console.log(data.Events);
             for (var i = 0; i < data.Events.length; i++) {
-                $(".eventInfo").append("<p>" + data.Events[i].Date + "</p>");
-                $(".eventInfo").append("<p>" + data.Events[i].Venue.Name + "</p>");
-                $(".eventInfo").append("<p>" + data.Events[i].Venue.Address + "</p>");
-                $(".eventInfo").append("<p>Artists:</p>");
+                var newDiv = $("<div>");
+                newDiv.addClass("events");
+                newDiv.append("<p>" + data.Events[i].Date + "</p>");
+                newDiv.append("<p>" + data.Events[i].Venue.Name + "</p>");
+                newDiv.append("<p>" + data.Events[i].Venue.Address + "</p>");
+                newDiv.append("<p>Artists:</p>");
 
                 for (var v = 0; v < data.Events[i].Artists.length; v++) {
-                    $(".eventInfo").append("<p>" + data.Events[i].Artists[v].Name + "</p>");
+                    newDiv.append("<p>" + data.Events[i].Artists[v].Name + "</p>");
                 }
-                $(".eventInfo").append("<p><a href=" + data.Events[i].TicketUrl + ">Ticket Link</a></p>");
+                newDiv.append("<p><a href=" + data.Events[i].TicketUrl + " target='_blank'>Ticket Link</a></p>");
+                $(".eventInfo").append(newDiv);
             }
         })
     }
+
+    $(".eventInfo").on("click", ".collapsible", function () {
+        $(this).toggleClass("active");
+        var sibling = $(this).next()
+        if (sibling.css("display") === "block") {
+            sibling.css("display", "none");
+        } else {
+            sibling.css("display", "block")
+        }
+    })
+
+    $(".eventInfo").on("click", ".meetupLink", function () {
+        window.open($(this).data("link"), '_blank');
+    })
+
+    $(".eventInfo").on("click", ".meetupEvents", function () {
+        var sibling = $(this).nextAll("div").eq(1);
+        var urlName = {
+            urlname: $(this).data("urlname")
+        }
+
+        $.post("/groupevents", urlName).then(function (data) {
+            sibling.empty();
+            if (data.length !== 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var newDiv = $("<div>");
+                    newDiv.addClass("groupEvent");
+                    newDiv.append("<p>Name: " + data[i].name + "</p>");
+                    newDiv.append("<p>Date: " + data[i].local_date + " Time: " + data[i].local_time + "</p>");
+                    newDiv.append("<p>Rsvp Limit: " + data[i].rsvp_limit + "</p>");
+                    newDiv.append("<p>Yes Count: " + data[i].yes_rsvp_count + "</p>");
+                    newDiv.append("<p>Waitlist Count: " + data[i].waitlist_count + "</p>");
+                    sibling.append(newDiv);
+                }
+            } else {
+                sibling.append("<p>No Upcoming Events</p>")
+            }
+
+
+
+            $(this).toggleClass("active");
+            if (sibling.css("display") === "block") {
+                sibling.css("display", "none");
+            } else {
+                sibling.css("display", "block")
+            }
+        })
+    })
 
 })
 
@@ -181,14 +253,14 @@ var categories = [
     }
 ];
 
-var eventType = $("#event-types");
+var eventType = $("#event-type");
 function eventOptions() {
     var rowsToAdd = [];
     for (var i = 0; i < categories.length; i++) {
         rowsToAdd.push(createEventRow(categories[i]));
     }
-    $("#event-types").append(rowsToAdd);
-    $("#event-types").val(name);
+    $("#event-type").append(rowsToAdd);
+    $("#event-type").val(name);
 
 };
 
@@ -201,48 +273,68 @@ function createEventRow(categories) {
 
 eventOptions();
 
+function renderButtons() {
+    $(".usersKeywordButtons").empty();
+    $.get("/api/users/" + $("#user-id").text(), function (data) {
+        var food = data[0].food;
+        var event = data[0].event;
+        var newFoodButton = $("<button>");
+        newFoodButton.attr("type", "button");
+        newFoodButton.attr("data-api", "yelp");
+        newFoodButton.attr("data-event", food);
+        newFoodButton.html(food);
+        $(".usersKeywordButtons").append(newFoodButton);
+        var newEventButton = $("<button>");
+        newEventButton.attr("type", "button");
+        newEventButton.attr("data-api", "meetup");
+        newEventButton.attr("data-event", event);
+        newEventButton.html(event);
+        $(".usersKeywordButtons").append(newEventButton);
+    }).then(function () {
+        $.get("/api/preferences/" + $("#user-id").text(), function (data) {
+            for (var i = 0; i < data.length; i++) {
+                var newButton = $("<button>");
+                newButton.attr("type", "button");
+                newButton.attr("data-api", data[i].api);
+                newButton.attr("data-event", data[i].keyword);
+                newButton.html(data[i].keyword);
+                $(".usersKeywordButtons").append(newButton);
+            }
+
+        })
+    })
+
+}
+renderButtons();
+
 $(document).ready(function () {
     $("#new-food-preference").on("submit", function (event) {
         event.preventDefault();
         var preference = $("#preference").val().trim();
-        var newButton = $("<button>");
-        newButton.attr("type", "button");
-        newButton.attr("data-api", "yelp");
-        newButton.attr("data-event", preference);
-        newButton.html(preference);
-        $(".keywordButtons").append(newButton);
         var newPreference = {
             UserId: parseInt($("#user-id").text()),
-            keyword: preference
+            keyword: preference,
+            api: "yelp"
         }
-        $.post("/api/preferences", newPreference, function(){
+        $.post("/api/preferences", newPreference, function () {
             window.reload;
+        }).then(function () {
+            renderButtons();
         })
-
-
-
-
-
-
     });
 
     $("#new-event-type").on("submit", function (event) {
         event.preventDefault();
-
         var event = $("#event-types option:selected").val();
-        //var event = "Career & Business";
-        var newButton = $("<button>");
-        newButton.attr("type", "button");
-        newButton.attr("data-api", "meetup");
-        newButton.attr("data-event", event);
-        newButton.html(event);
-        $(".keywordButtons").append(newButton);
         var newEvent = {
             UserId: parseInt($("#user-id").text()),
-            keyword: event
+            keyword: event,
+            api: "meetup"
         }
-        $.post("/api/preferences", newEvent, function(){
+        $.post("/api/preferences", newEvent, function () {
             window.reload;
+        }).then(function () {
+            renderButtons();
         })
 
     })
@@ -250,7 +342,7 @@ $(document).ready(function () {
 });
 
 // Log out button function
-$("#logout-button").on("click", function(){
+$("#logout-button").on("click", function () {
     // console.log("logout button working");
     window.location.href = "/login";
 });

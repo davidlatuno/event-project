@@ -4062,7 +4062,7 @@ padding-top: 20px;
     background-color: #555;
 }
 
-.eventContent {
+.groupContent, .groupEvents {
     padding: 0 18px;
     display: none;
     overflow: hidden;
@@ -4071,4 +4071,8 @@ padding-top: 20px;
 
 .meetupButton {
     background-color: #777;
+}
+
+.groupEvent {
+    background: grey;
 }

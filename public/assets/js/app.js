@@ -17,7 +17,7 @@ $(".keywordButtons").on("click", "button", function (event) {
                 } else {
                     newDiv.append("<p>Address: NO ADDRESS ON FILE</p>")
                 }
-                
+
                 newDiv.append("<p>Rating: " + data[i].rating + " (Review Count: " + data[i].review_count + ")</p>")
                 newDiv.append("<p><a href=" + data[i].url + "target='_blank'>Yelp Link</a></p>")
                 $(".eventInfo").append(newDiv);
@@ -42,11 +42,14 @@ $(".keywordButtons").on("click", "button", function (event) {
                 groupLink.addClass("meetupButton button meetupLink");
                 groupLink.text("Group Link");
                 newDiv.append(groupLink);
-                newDiv.append("<button class='button meetupButton meetupEvents' data-urlname=" + body[i].urlname + ">Group Events</button>")
+                newDiv.append("<button class='button meetupButton meetupEvents' data-urlname=" + body[i].urlname + " data-click='0'>Upcoming Events</button>")
                 newDiv.append("<button class='button collapsible'>Description</button>")
-                newDiv.append("<div class='eventContent'>" + body[i].description + "</div>");
+                newDiv.append("<div class='groupContent'>" + body[i].description + "</div>");
+                newDiv.append("<div class='groupEvents'></div>")
                 $(".eventInfo").append(newDiv);
+
             }
+
         })
     }
 
@@ -77,18 +80,52 @@ $(".keywordButtons").on("click", "button", function (event) {
         })
     }
 
-    $(".eventInfo").on("click", ".collapsible", function() {
+    $(".eventInfo").on("click", ".collapsible", function () {
         $(this).toggleClass("active");
         var sibling = $(this).next()
-        if(sibling.css("display") === "block") {
+        if (sibling.css("display") === "block") {
             sibling.css("display", "none");
         } else {
             sibling.css("display", "block")
         }
     })
 
-    $(".eventInfo").on("click", ".meetupLink", function() {
+    $(".eventInfo").on("click", ".meetupLink", function () {
         window.open($(this).data("link"), '_blank');
+    })
+
+    $(".eventInfo").on("click", ".meetupEvents", function () {
+        var sibling = $(this).nextAll("div").eq(1);
+        var urlName = {
+            urlname: $(this).data("urlname")
+        }
+
+        $.post("/groupevents", urlName).then(function (data) {
+            sibling.empty();
+            if (data.length !== 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var newDiv = $("<div>");
+                    newDiv.addClass("groupEvent");
+                    newDiv.append("<p>Name: " + data[i].name + "</p>");
+                    newDiv.append("<p>Date: " + data[i].local_date + " Time: " + data[i].local_time + "</p>");
+                    newDiv.append("<p>Rsvp Limit: " + data[i].rsvp_limit + "</p>");
+                    newDiv.append("<p>Yes Count: " + data[i].yes_rsvp_count + "</p>");
+                    newDiv.append("<p>Waitlist Count: " + data[i].waitlist_count + "</p>");
+                    sibling.append(newDiv);
+                }
+            } else {
+                sibling.append("<p>No Upcoming Events</p>")
+            }
+
+
+
+            $(this).toggleClass("active");
+            if (sibling.css("display") === "block") {
+                sibling.css("display", "none");
+            } else {
+                sibling.css("display", "block")
+            }
+        })
     })
 
 })

@@ -161,4 +161,13 @@ router.post("/meetup", function (req, res) {
     }
 })
 
+router.post("/groupevents", function (req, res) {
+    request("https://api.meetup.com/" + req.body.urlname + "/events?key=1b18621c415e4a69b21d2c503a5914&photo-host=public&page=10", function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            var body = JSON.parse(body);
+            res.json(body);
+        }
+    });
+})
+
 module.exports = router;

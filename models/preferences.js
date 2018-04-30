@@ -1,6 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Preference = sequelize.define("Preference", {
         keyword: DataTypes.STRING,
+        api: DataTypes.STRING
         
     });
     Preference.associate = function (models) {

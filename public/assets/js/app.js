@@ -42,7 +42,7 @@ $(".keywordButtons").on("click", "button", function (event) {
                 groupLink.addClass("meetupButton button meetupLink");
                 groupLink.text("Group Link");
                 newDiv.append(groupLink);
-                newDiv.append("<button class='button meetupButton meetupEvents' data-urlname=" + body[i].urlname + " data-click='0'>Upcoming Events</button>")
+                newDiv.append("<button class='button meetupEvents meetupButton' data-urlname=" + body[i].urlname + " data-click='0'>Upcoming Events</button>")
                 newDiv.append("<button class='button collapsible'>Description</button>")
                 newDiv.append("<div class='groupContent'>" + body[i].description + "</div>");
                 newDiv.append("<div class='groupEvents'></div>")
@@ -88,10 +88,15 @@ $(".keywordButtons").on("click", "button", function (event) {
 $(".eventInfo").on("click", ".collapsible", function () {
     $(this).toggleClass("active");
     var sibling = $(this).next()
+    var sibling2 = $(this).nextAll("div").eq(1);
     if (sibling.css("display") === "block") {
         sibling.css("display", "none");
     } else {
         sibling.css("display", "block")
+    }
+    if (sibling2.css("display") === "block") {
+        sibling2.css("display", "none");
+        $(this).prev().toggleClass("active");
     }
 })
 
@@ -101,9 +106,12 @@ $(".eventInfo").on("click", ".meetupLink", function () {
 
 $(".eventInfo").on("click", ".meetupEvents", function () {
     var sibling = $(this).nextAll("div").eq(1);
+    var sibling2 = $(this).nextAll("div").eq(0);
     var urlName = {
         urlname: $(this).data("urlname")
     }
+
+    $(this).toggleClass("active");
 
     $.post("/groupevents", urlName).then(function (data) {
         sibling.empty();
@@ -119,7 +127,7 @@ $(".eventInfo").on("click", ".meetupEvents", function () {
                 } else {
                     newDiv.append("<p>Rsvp Limit: No Limit | Yes: " + data[i].yes_rsvp_count + " | Waitlist: " + data[i].waitlist_count + "</p>");
                 }
-                
+
                 // newDiv.append("<p>Yes Count: " + data[i].yes_rsvp_count + "</p>");
                 // newDiv.append("<p>Waitlist Count: " + data[i].waitlist_count + "</p>");
                 newDiv.append("<p><a class='button musicLink' href=" + data[i].link + " target='_blank'>Event Link</a></p>");
@@ -129,13 +137,14 @@ $(".eventInfo").on("click", ".meetupEvents", function () {
             sibling.append("<p>No Upcoming Events</p>")
         }
 
-
-
-        $(this).toggleClass("active");
         if (sibling.css("display") === "block") {
             sibling.css("display", "none");
         } else {
-            sibling.css("display", "block")
+            sibling.css("display", "block");
+        }
+        if (sibling2.css("display") === "block") {
+            sibling2.css("display", "none");
+            $(sibling2).prev().toggleClass("active");
         }
     })
 })

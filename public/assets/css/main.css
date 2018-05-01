@@ -4091,6 +4091,11 @@ padding-top: 20px;
     color: black;
 }
 
+.meetupButton {
+    background-color: #777;
+    border-radius: 5px;
+}
+
 /* Collapsible Description for Meetup */
 
 .collapsible {
@@ -4100,21 +4105,15 @@ padding-top: 20px;
     border-radius: 5px;
 }
 
-.active, .collapsible:hover {
-    background-color: #555;
+.active { 
+    background-color: #555; 
 }
 
 .groupContent {
-    padding-top: 30px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-
-}
-
-.meetupButton {
-    background-color: #777;
-    border-radius: 5px;
+    margin-top: 30px;
 }
 
 .meetupButton:focus, .collapsible:focus, button:focus {
@@ -4122,7 +4121,6 @@ padding-top: 20px;
 }
 
 .groupEvents {
-    padding-top: 30px;
     display: none;
     overflow: hidden;
 }

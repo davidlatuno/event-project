@@ -30,7 +30,6 @@
     <div class="sidenav">
         <div id="image-input" class="major">
             <span id="user-welcome" class="logo">Welcome {{user.userName}}!</span>
-<<<<<<< HEAD
             <span id="user-id">{{user.id}}</span>
             <div class="circular--portrait">
                 <img id="profile-img" src="{{user.picture}}" alt="User Image" style="width:200px" />
@@ -47,44 +46,21 @@
                 </button>
             </form>
         </div>
-=======
-            <span id="user-id" style="display:none">{{user.id}}</span>
-            <div>
-                <img id="profile-img" src="{{user.picture}}" alt="User Image" style="width:200px" />
-            </div>
-            <div class="form-group">
-                <form id="new-food-preference">
-                    <label for="new-preference">Add new food/business to your preferences!
-                    </label>
-                    <input id="preference">
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-                <form id="new-event-type">
-                    <label for="new-preference">Add event category to your preferences!
-                    </label>
-                    <select id="event-types" name="event-type" class="form-control" style="color:gray">
-                        <option class="selectPh" value="">Choose a category</option>
-                    </select>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-
-
->>>>>>> 57364a396c5cf6415f572dd137c0b78cded5afa8
 
         <div id="newEventType">
             <form id="new-event-type" style="margin:auto;max-width:300px">
                 <label id="text-center" for="new-preference">Add event category
                 </label>
                 <select id="event-type" name="event-type" class="form-control" style="color:gray">
-                    <option class="selectPh" value="">Choose a Category</option>
+                    <option class="selectPh" value="" disabled>Choose a Category</option>
                 </select>
                 <button type="submit" id="sb">
                     <i class="fa fa-search"></i>
                 </button>
             </form>
         </div>
-
     </div>
+
 
     <div class="keywordButtons">
         <button type="button" data-api="jambase" data-event="">Music Events Near Me</button>

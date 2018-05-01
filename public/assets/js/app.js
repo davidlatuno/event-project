@@ -8,7 +8,7 @@ $(".keywordButtons").on("click", "button", function (event) {
         $.post("/yelp", keyword).then(function (data) {
             console.log(data);
 
-            for (var i = 0; i < data.length; i++) {
+            for (var i = 0; i < 10; i++) {
                 var newDiv = $("<div>");
                 newDiv.addClass("events");
                 newDiv.append("<p>Name: " + data[i].name + "</p>")
@@ -19,7 +19,7 @@ $(".keywordButtons").on("click", "button", function (event) {
                 }
 
                 newDiv.append("<p>Rating: " + data[i].rating + " (Review Count: " + data[i].review_count + ")</p>")
-                newDiv.append("<p><a href=" + data[i].url + "target='_blank'>Yelp Link</a></p>")
+                newDiv.append("<p><a class='button musicLink' href=" + data[i].url + "target='_blank'>Yelp Link</a></p>")
                 $(".eventInfo").append(newDiv);
             }
 
@@ -62,19 +62,22 @@ $(".keywordButtons").on("click", "button", function (event) {
             method: "GET",
             url: queryUrl
         }).then(function (data) {
+            var artists = [];
             console.log(data.Events);
-            for (var i = 0; i < data.Events.length; i++) {
+            for (var i = 0; i < 10; i++) {
                 var newDiv = $("<div>");
                 newDiv.addClass("events");
-                newDiv.append("<p>" + data.Events[i].Date + "</p>");
-                newDiv.append("<p>" + data.Events[i].Venue.Name + "</p>");
-                newDiv.append("<p>" + data.Events[i].Venue.Address + "</p>");
-                newDiv.append("<p>Artists:</p>");
+                newDiv.append("<p>Date: " + data.Events[i].Date.split("T").join(" Time: ") + "</p>");
+                newDiv.append("<p>Venue: " + data.Events[i].Venue.Name + "<br>Address: " + data.Events[i].Venue.Address + "</p>");
+                var newP = $("<p>")
+                newP.append("Artists: ");
 
                 for (var v = 0; v < data.Events[i].Artists.length; v++) {
-                    newDiv.append("<p>" + data.Events[i].Artists[v].Name + "</p>");
+                    artists.push(data.Events[i].Artists[v].Name);
                 }
-                newDiv.append("<p><a href=" + data.Events[i].TicketUrl + " target='_blank'>Ticket Link</a></p>");
+                newP.append(artists.join(", "));
+                newDiv.append(newP);
+                newDiv.append("<p><a class='button musicLink' href=" + data.Events[i].TicketUrl + " target='_blank'>Ticket Link</a></p>");
                 $(".eventInfo").append(newDiv);
             }
         })

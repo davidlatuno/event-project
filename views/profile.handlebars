@@ -1,73 +1,77 @@
 <!-- Wrapper -->
-<div id="wrapper">
-    <!-- Header -->
-    <header id="header" class="alt">
-
-
-
-        <nav>
-            <a href="#menu">Menu</a>
+<div id="grid-container">
+    <div id="head-section">
+        <!-- Header -->
+        <header id="header" class="alt">
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+        <!-- Menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/signup">Signup</a>
+                </li>
+            </ul>
+            <ul class="actions vertical">
+                <li>
+                    <a href="/login" class="button fit">Log out</a>
+                </li>
+            </ul>
         </nav>
-    </header>
-    <!-- Menu -->
-    <nav id="menu">
-        <ul class="links">
-            <li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-                <a href="/signup">Signup</a>
-            </li>
-        </ul>
-        <ul class="actions vertical">
-            <li>
-                <a href="/login" class="button fit">Log out</a>
-            </li>
-        </ul>
-    </nav>
-    <button class="button backToTop">Top</button>
-    <hr>
-
+        <button class="button backToTop">Top</button>
+        <br>
+        <br>
+        <br>
+    </div>
     <div class="sidenav">
-        <div id="image-input" class="major">
+        <div id="image-input" class="major form-group">
             <span id="user-welcome" class="logo">Welcome {{user.userName}}!</span>
             <span id="user-id" style="display:none">{{user.id}}</span>
-            <div class="circular--portrait">
+            <div class="circular--portrait" id="profile-pic">
                 <img id="profile-img" src="{{user.picture}}" alt="User Image" style="width:200px" />
             </div>
         </div>
-<hr>
-        <div id="newFoodPreference">
-            <form id="new-food-preference" style="margin:auto;max-width:300px">
-                <label id="text-center" for="new-preference">Add new food/business
-                </label>
-                <input id="preference" type="text" placeholder="Food or Business" name="search2">
-                <button type="submit" id="sb" class="sb">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
-        </div>
+        
+        <hr>
+        <div class="form-group">
+            <div id="newFoodPreference">
+                <form id="new-food-preference" style="margin:auto;max-width:100%;">
+                    <label id="text-center" for="new-preference">Add new food/business
+                    </label>
+                    <input id="preference" type="text" placeholder="Food or Business" name="search2">
+                    <button type="submit" id="sb" class="sb">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
 
-        <div id="newEventType">
-            <form id="new-event-type" style="margin:auto;max-width:300px">
-                <label id="text-center" for="new-preference">Add event category
-                </label>
-                <select id="event-type" name="event-type" class="form-control" style="color:gray">
-                    <option class="selectPh" value="" disabled>Choose a Category</option>
-                </select>
-                <button type="submit" id="sb">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
+            <div id="newEventType">
+                <form id="new-event-type" style="margin:auto;max-width:100%">
+                    <label id="text-center" for="new-preference">Add event category
+                    </label>
+                    <select id="event-type" name="event-type" class="form-control" style="color:gray">
+                        <option class="selectPh" value="" disabled>Choose a Category</option>
+                    </select>
+                    <button type="submit" id="sb">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
+    <div id="main-content">
+        <div class="keywordButtons">
+            <button type="button" data-api="jambase" data-event="">Music Events Near Me</button>
+            <div class="usersKeywordButtons"></div>
+        </div>
+        <div class="eventInfo">
 
-    <div class="keywordButtons">
-        <button type="button" data-api="jambase" data-event="">Music Events Near Me</button>
-        <div class="usersKeywordButtons"></div>
-    </div>
-    <div class="eventInfo">
-
+        </div>
     </div>
 </div>

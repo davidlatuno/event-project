@@ -67,7 +67,7 @@ $(".keywordButtons").on("click", "button", function (event) {
             for (var i = 0; i < 10; i++) {
                 var newDiv = $("<div>");
                 newDiv.addClass("events");
-                newDiv.append("<p>Date: " + data.Events[i].Date.split("T").join(" Time: ") + "</p>");
+                newDiv.append("<p>" + moment(data.Events[i].Date).format('MMMM Do YYYY, h:mm:ss a') + "</p>");
                 newDiv.append("<p>Venue: " + data.Events[i].Venue.Name + "<br>Address: " + data.Events[i].Venue.Address + "</p>");
                 var newP = $("<p>")
                 newP.append("Artists: ");

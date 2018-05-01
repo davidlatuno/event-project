@@ -4104,11 +4104,12 @@ padding-top: 20px;
     background-color: #555;
 }
 
-.groupContent, .groupEvents {
-    padding: 0 18px;
+.groupContent {
+    padding-top: 30px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+
 }
 
 .meetupButton {
@@ -4120,8 +4121,16 @@ padding-top: 20px;
     outline: 0;
 }
 
+.groupEvents {
+    padding-top: 30px;
+    display: none;
+    overflow: hidden;
+}
+
 .groupEvent {
-    background: grey;
+    background: #f1f1f1;
+    border-radius: 5px;
+    margin-top: 30px;
 }
 
 .backToTop {

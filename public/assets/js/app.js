@@ -108,14 +108,21 @@ $(".eventInfo").on("click", ".meetupEvents", function () {
     $.post("/groupevents", urlName).then(function (data) {
         sibling.empty();
         if (data.length !== 0) {
+            console.log(data);
             for (var i = 0; i < data.length; i++) {
                 var newDiv = $("<div>");
                 newDiv.addClass("groupEvent");
                 newDiv.append("<p>Name: " + data[i].name + "</p>");
-                newDiv.append("<p>Date: " + data[i].local_date + " Time: " + data[i].local_time + "</p>");
-                newDiv.append("<p>Rsvp Limit: " + data[i].rsvp_limit + "</p>");
-                newDiv.append("<p>Yes Count: " + data[i].yes_rsvp_count + "</p>");
-                newDiv.append("<p>Waitlist Count: " + data[i].waitlist_count + "</p>");
+                newDiv.append("<p>" + moment(data[i].time).format('MMMM Do YYYY, h:mm:ss a') + "</p>");
+                if (data[i].rsvp_limit) {
+                    newDiv.append("<p>Rsvp Limit: " + data[i].rsvp_limit + " | Yes: " + data[i].yes_rsvp_count + " | Waitlist: " + data[i].waitlist_count + "</p>");
+                } else {
+                    newDiv.append("<p>Rsvp Limit: No Limit | Yes: " + data[i].yes_rsvp_count + " | Waitlist: " + data[i].waitlist_count + "</p>");
+                }
+                
+                // newDiv.append("<p>Yes Count: " + data[i].yes_rsvp_count + "</p>");
+                // newDiv.append("<p>Waitlist Count: " + data[i].waitlist_count + "</p>");
+                newDiv.append("<p><a class='button musicLink' href=" + data[i].link + " target='_blank'>Event Link</a></p>");
                 sibling.append(newDiv);
             }
         } else {

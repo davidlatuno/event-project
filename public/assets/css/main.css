@@ -2583,8 +2583,8 @@
   }
   
 .circular--portrait img {
-	width: 100%;
-	height: auto;
+	width: auto;
+	height: 200px;
 }
 
 input[type=file] {

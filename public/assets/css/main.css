@@ -1650,7 +1650,7 @@
 		font-size: 17pt;
 		font-weight: 300;
 		letter-spacing: 0.025em;
-		line-height: 1.65;
+        line-height: 1.65;
 	}
 
 	
@@ -1983,7 +1983,7 @@
 		appearance: none;
 		background: rgba(212, 212, 255, 0.035);
 		border: none;
-		border-radius: 0;
+		border-radius: 5px;
 		color: inherit;
 		display: block;
 		outline: 0;

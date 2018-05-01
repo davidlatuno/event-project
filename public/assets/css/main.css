@@ -4097,6 +4097,7 @@ padding-top: 20px;
     background-color: #777;
     color: white;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .active, .collapsible:hover {
@@ -4112,6 +4113,11 @@ padding-top: 20px;
 
 .meetupButton {
     background-color: #777;
+    border-radius: 5px;
+}
+
+.meetupButton:focus, .collapsible:focus {
+    outline: 0;
 }
 
 .groupEvent {

@@ -80,54 +80,74 @@ $(".keywordButtons").on("click", "button", function (event) {
         })
     }
 
-    $(".eventInfo").on("click", ".collapsible", function () {
+})
+
+$(".eventInfo").on("click", ".collapsible", function () {
+    $(this).toggleClass("active");
+    var sibling = $(this).next()
+    if (sibling.css("display") === "block") {
+        sibling.css("display", "none");
+    } else {
+        sibling.css("display", "block")
+    }
+})
+
+$(".eventInfo").on("click", ".meetupLink", function () {
+    window.open($(this).data("link"), '_blank');
+})
+
+$(".eventInfo").on("click", ".meetupEvents", function () {
+    var sibling = $(this).nextAll("div").eq(1);
+    var urlName = {
+        urlname: $(this).data("urlname")
+    }
+
+    $.post("/groupevents", urlName).then(function (data) {
+        sibling.empty();
+        if (data.length !== 0) {
+            for (var i = 0; i < data.length; i++) {
+                var newDiv = $("<div>");
+                newDiv.addClass("groupEvent");
+                newDiv.append("<p>Name: " + data[i].name + "</p>");
+                newDiv.append("<p>Date: " + data[i].local_date + " Time: " + data[i].local_time + "</p>");
+                newDiv.append("<p>Rsvp Limit: " + data[i].rsvp_limit + "</p>");
+                newDiv.append("<p>Yes Count: " + data[i].yes_rsvp_count + "</p>");
+                newDiv.append("<p>Waitlist Count: " + data[i].waitlist_count + "</p>");
+                sibling.append(newDiv);
+            }
+        } else {
+            sibling.append("<p>No Upcoming Events</p>")
+        }
+
+
+
         $(this).toggleClass("active");
-        var sibling = $(this).next()
         if (sibling.css("display") === "block") {
             sibling.css("display", "none");
         } else {
             sibling.css("display", "block")
         }
     })
+})
 
-    $(".eventInfo").on("click", ".meetupLink", function () {
-        window.open($(this).data("link"), '_blank');
-    })
+$(window).scroll(function () {
 
-    $(".eventInfo").on("click", ".meetupEvents", function () {
-        var sibling = $(this).nextAll("div").eq(1);
-        var urlName = {
-            urlname: $(this).data("urlname")
+    var top = $(".eventInfo").offset().top;
+    var windowTop = $(window).scrollTop();
+    function topScroll() {
+
+        if (top < windowTop) {
+            $(".backToTop").css("display", "block");
+        } else {
+            $(".backToTop").css("display", "none");
         }
+    }
+    topScroll();
+})
 
-        $.post("/groupevents", urlName).then(function (data) {
-            sibling.empty();
-            if (data.length !== 0) {
-                for (var i = 0; i < data.length; i++) {
-                    var newDiv = $("<div>");
-                    newDiv.addClass("groupEvent");
-                    newDiv.append("<p>Name: " + data[i].name + "</p>");
-                    newDiv.append("<p>Date: " + data[i].local_date + " Time: " + data[i].local_time + "</p>");
-                    newDiv.append("<p>Rsvp Limit: " + data[i].rsvp_limit + "</p>");
-                    newDiv.append("<p>Yes Count: " + data[i].yes_rsvp_count + "</p>");
-                    newDiv.append("<p>Waitlist Count: " + data[i].waitlist_count + "</p>");
-                    sibling.append(newDiv);
-                }
-            } else {
-                sibling.append("<p>No Upcoming Events</p>")
-            }
-
-
-
-            $(this).toggleClass("active");
-            if (sibling.css("display") === "block") {
-                sibling.css("display", "none");
-            } else {
-                sibling.css("display", "block")
-            }
-        })
-    })
-
+// Back to top button function
+$(".backToTop").click(function () {
+    $("html, body").animate({ scrollTop: 0 }, "fast");
 })
 
 var categories = [

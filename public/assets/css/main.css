@@ -4117,3 +4117,12 @@ padding-top: 20px;
 .groupEvent {
     background: grey;
 }
+
+.backToTop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: none;
+    width: 100px;
+}

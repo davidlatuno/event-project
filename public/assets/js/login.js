@@ -43,11 +43,9 @@ $(document).ready(function () {
             window.location.replace(data);
             sessionStorage.setItem("email", email);
         }).fail(function (err) {
-            $("#email_error_message").html("invalid email");
             emailInput.addClass("error");
-            $("#email_error_message").show();
             error_email = true;
-            $("#password_error_message").html("invalid password");
+            $("#password_error_message").html("invalid email or password");
             passwordInput.addClass("error");
             $("#password_error_message").show();
             error_password = true;

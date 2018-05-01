@@ -4137,29 +4137,60 @@ padding-top: 20px;
     color: black;
 }
 
+.meetupButton {
+    background-color: #777;
+    border-radius: 5px;
+}
+
 /* Collapsible Description for Meetup */
 
 .collapsible {
     background-color: #777;
     color: white;
     cursor: pointer;
+    border-radius: 5px;
 }
 
-.active, .collapsible:hover {
-    background-color: #555;
+.active { 
+    background-color: #555; 
 }
 
-.groupContent, .groupEvents {
-    padding: 0 18px;
+.groupContent {
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+    margin-top: 30px;
 }
 
-.meetupButton {
-    background-color: #777;
+.meetupButton:focus, .collapsible:focus, button:focus {
+    outline: 0;
+}
+
+.groupEvents {
+    display: none;
+    overflow: hidden;
 }
 
 .groupEvent {
-    background: grey;
+    background: #f1f1f1;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.backToTop {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    display: none;
+    width: 100px;
+}
+
+button, .button {
+    border-radius: 5px;
+}
+
+.musicLink {
+    background: #777;
+    font-size: 18px;
 }

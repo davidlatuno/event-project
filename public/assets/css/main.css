@@ -4115,18 +4115,18 @@ padding-top: 20px;
 			visibility: visible;
         }
 
-.keywordButtons, .eventInfo {
+/* .keywordButtons, .eventInfo {
     position: relative;
     width: 800px;
     margin-left: 25%;
-}
+} */
 
-.eventInfo {
+/* .eventInfo {
     margin-top: 30px;
-}
+} */
 
 .events {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     text-align: center;
     background: white;
     border-radius: 5px;
@@ -4160,7 +4160,7 @@ padding-top: 20px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .meetupButton:focus, .collapsible:focus, button:focus {
@@ -4175,7 +4175,7 @@ padding-top: 20px;
 .groupEvent {
     background: #f1f1f1;
     border-radius: 5px;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .backToTop {

@@ -325,7 +325,7 @@ $(document).ready(function () {
 
     $("#new-event-type").on("submit", function (event) {
         event.preventDefault();
-        var event = $("#event-types option:selected").val();
+        var event = $("#event-type option:selected").val();
         var newEvent = {
             UserId: parseInt($("#user-id").text()),
             keyword: event,

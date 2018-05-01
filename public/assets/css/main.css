@@ -4195,3 +4195,8 @@ button, .button {
     background: #777;
     font-size: 18px;
 }
+
+#preference::placeholder {
+    color: grey !important;
+    opacity: 1.0;
+}

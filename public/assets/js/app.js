@@ -62,9 +62,9 @@ $(".keywordButtons").on("click", "button", function (event) {
             method: "GET",
             url: queryUrl
         }).then(function (data) {
-            var artists = [];
             console.log(data.Events);
             for (var i = 0; i < 10; i++) {
+                var artists = [];
                 var newDiv = $("<div>");
                 newDiv.addClass("events");
                 newDiv.append("<p>" + moment(data.Events[i].Date).format('MMMM Do YYYY, h:mm:ss a') + "</p>");

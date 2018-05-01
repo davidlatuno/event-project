@@ -54,7 +54,7 @@ $(".keywordButtons").on("click", "button", function (event) {
     }
 
     if (api === "jambase") {
-        var queryUrl = "http://api.jambase.com/events?zipCode=92101&radius=25&page=0&api_key=jt2vqv49znwfh5kwpc2d4n98"
+        var queryUrl = "https://api.jambase.com/events?zipCode=92101&radius=25&page=0&api_key=jt2vqv49znwfh5kwpc2d4n98"
 
         $(".eventInfo").empty();
 

@@ -28,42 +28,45 @@
         <br>
         <br>
     </div>
+
     <div class="sidenav">
-        <div id="image-input" class="major form-group">
+        <div id="image-input" class="major">
             <span id="user-welcome" class="logo">Welcome {{user.userName}}!</span>
             <span id="user-id" style="display:none">{{user.id}}</span>
             <div class="circular--portrait" id="profile-pic">
                 <img id="profile-img" src="{{user.picture}}" alt="User Image" style="width:200px" />
             </div>
         </div>
-        
         <hr>
-        <div class="form-group">
-            <div id="newFoodPreference">
-                <form id="new-food-preference" style="margin:auto;max-width:100%;">
-                    <label id="text-center" for="new-preference">Add new food/business
-                    </label>
-                    <input id="preference" type="text" placeholder="Food or Business" name="search2">
+        <div id="newFoodPreference" class="form-group">
+            <form id="new-food-preference" style="margin:auto;max-width:300px">
+                <label id="text-center" for="new-preference">Add new Preference
+                </label>
+                <div>
+                    <input id="preference" type="text" placeholder="Food/Business/Activity" name="search2">
                     <button type="submit" id="sb" class="sb">
                         <i class="fa fa-search"></i>
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
+        </div>
 
-            <div id="newEventType">
-                <form id="new-event-type" style="margin:auto;max-width:100%">
-                    <label id="text-center" for="new-preference">Add event category
-                    </label>
+        <div id="newEventType" class="form-group">
+            <form id="new-event-type" style="margin:auto;max-width:100%">
+                <label id="text-center" for="new-preference">Add event category
+                </label>
+                <div>
                     <select id="event-type" name="event-type" class="form-control" style="color:gray">
                         <option class="selectPh" value="" disabled>Choose a Category</option>
                     </select>
-                    <button type="submit" id="sb">
+                    <button type="submit" id="sb" class="sb">
                         <i class="fa fa-search"></i>
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+
 
     <div id="button-content">
         <div class="keywordButtons">

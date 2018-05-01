@@ -2600,18 +2600,20 @@ input, #event-type {
 	background-color: white;
   }
 
-  #sb {
-    float: left;
-  }
+  /* #sb {
+	
+
+  } */
 
   .sb {
 	margin-bottom: 30px;
+	display: inline-block;
   }
 
 #preference {
 	max-width: 200px;
 	margin-left: 10px;
-	float: left;
+	display: inline-block;
 	margin-bottom: 30px;
 	background-color: white;
 	color: grey;
@@ -2624,7 +2626,7 @@ input, #event-type {
 select#event-type.form-control {
     width: 200px;
 	margin-left: 10px;
-	float:left;
+	display: inline-block;
 }
 
 hr {
@@ -2638,7 +2640,7 @@ hr {
 
 .sidenav {
 height: 100%;
-width: 280px;
+width: 300px;
 position: fixed;
 z-index: 1;
 top: 0;
@@ -4194,4 +4196,9 @@ button, .button {
 .musicLink {
     background: #777;
     font-size: 18px;
+}
+
+#preference::placeholder {
+    color: grey !important;
+    opacity: 1.0;
 }

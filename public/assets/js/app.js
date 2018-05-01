@@ -19,7 +19,7 @@ $(".keywordButtons").on("click", "button", function (event) {
                 }
 
                 newDiv.append("<p>Rating: " + data[i].rating + " (Review Count: " + data[i].review_count + ")</p>")
-                newDiv.append("<p><a class='button musicLink' href=" + data[i].url + "target='_blank'>Yelp Link</a></p>")
+                newDiv.append("<p><a class='button musicLink' href=" + data[i].url + " target='_blank'>Yelp Link</a></p>")
                 $(".eventInfo").append(newDiv);
             }
 

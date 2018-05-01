@@ -1641,6 +1641,7 @@
 			transition: none !important;
 		}
 
+
 /* Type */
 
 	body, input, select, textarea {
@@ -1651,6 +1652,7 @@
 		letter-spacing: 0.025em;
 		line-height: 1.65;
 	}
+
 	
 	select option{
 		background-color: rgb(76, 76, 88);
@@ -2558,14 +2560,16 @@
 			}
 /* profile page */
 #image-input {
-		
+	margin-bottom: 30px;
 	padding:40px 60px 0px 30px;
+	padding-left: 43px;
 }
 
 #user-welcome {
-	padding-left: 20px;
-	font-size:20px;
+    padding-left: 25px;
+	font-size:18px;
 	font-weight:600;
+	text-align: center;
 }
 
 .circular--portrait {
@@ -2574,12 +2578,14 @@
 	height: 200px;
 	overflow: hidden;
 	border-radius: 50%;
+	border: 5px solid white;
+	margin-top: 10px;
   }
   
-  .circular--portrait img {
+.circular--portrait img {
 	width: 100%;
 	height: auto;
-  }
+}
 
 input[type=file] {
 
@@ -2590,9 +2596,49 @@ input[type=file] {
 
 }
 
+input, #event-type {
+	background-color: white;
+  }
+
+  #sb {
+    float: left;
+  }
+
+  .sb {
+	margin-bottom: 30px;
+  }
+
+#preference {
+	max-width: 200px;
+	margin-left: 10px;
+	float: left;
+	margin-bottom: 30px;
+	background-color: white;
+	color: grey;
+}
+
+#newFoodPreference, #newEventType {
+	margin-top: 10px;
+}
+
+select#event-type.form-control {
+    width: 200px;
+	margin-left: 10px;
+	float:left;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#text-center {
+	text-align: center;
+}
+
 .sidenav {
 height: 100%;
-width: 250px;
+width: 280px;
 position: fixed;
 z-index: 1;
 top: 0;

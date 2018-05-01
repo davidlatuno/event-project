@@ -2562,11 +2562,11 @@
 #image-input {
 	margin-bottom: 30px;
 	padding:40px 60px 0px 30px;
-	padding-left: 45px;
+	padding-left: 43px;
 }
 
 #user-welcome {
-	padding-left: 20px;
+    padding-left: 25px;
 	font-size:18px;
 	font-weight:600;
 	text-align: center;
@@ -2582,10 +2582,10 @@
 	margin-top: 10px;
   }
   
-  .circular--portrait img {
+.circular--portrait img {
 	width: 100%;
 	height: auto;
-  }
+}
 
 input[type=file] {
 
@@ -2610,7 +2610,7 @@ input, #event-type {
 
 #preference {
 	max-width: 200px;
-	margin-left: 30px;
+	margin-left: 10px;
 	float: left;
 	margin-bottom: 30px;
 	background-color: white;
@@ -2623,7 +2623,7 @@ input, #event-type {
 
 select#event-type.form-control {
     width: 200px;
-	margin-left: 30px;
+	margin-left: 10px;
 	float:left;
 }
 
@@ -2638,7 +2638,7 @@ hr {
 
 .sidenav {
 height: 100%;
-width: 300px;
+width: 280px;
 position: fixed;
 z-index: 1;
 top: 0;
@@ -2665,7 +2665,7 @@ padding-top: 20px;
 		background-color: transparent;
 		border: 0;
 		border-radius: 0;
-		/* box-shadow: inset 0 0 0 2px #ffffff; */
+		box-shadow: inset 0 0 0 2px #ffffff;
 		color: #ffffff;
 		cursor: pointer;
 		display: inline-block;

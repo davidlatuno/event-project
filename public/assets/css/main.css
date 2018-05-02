@@ -4128,7 +4128,7 @@ padding-top: 20px;
 } */
 
 .events {
-    /* margin-bottom: 30px; */
+    margin-bottom: 30px;
     text-align: center;
     background: white;
     border-radius: 5px;
@@ -4162,7 +4162,7 @@ padding-top: 20px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-    /* margin-top: 30px; */
+    margin-top: 30px;
 }
 
 .meetupButton:focus, .collapsible:focus, button:focus {
@@ -4171,7 +4171,8 @@ padding-top: 20px;
 
 .groupEvents {
     display: none;
-    overflow: hidden;
+	overflow: hidden;
+	margin-bottom: 30px;
 }
 
 .groupEvent {

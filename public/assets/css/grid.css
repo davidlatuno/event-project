@@ -2,6 +2,9 @@
     box-sizing: border-box;
 }
 
+#main-content {
+    margin-top: -200px;
+}
 
 @media (max-width:1800px) and (min-width:769px) {
     #grid-container{
@@ -18,7 +21,7 @@
     }
     #button-content{
         grid-column-start: 2;
-        grid-column-end: -1;
+        grid-column-end: 8;
         grid-row-start:2;
         grid-row-end: 3;
         margin-left:20px;
@@ -32,7 +35,7 @@
     }
 
     .events{
-        margin: -30px 30px 0px 20px;
+        margin: 30px 30px 0px 20px;
     }
    
     .sb {
@@ -109,7 +112,7 @@
         grid-row-end: -1;
     }
     .events{
-        margin: 0px 20px 0px 20px;
+        margin: 20px 20px 0px 20px;
     }
 }
 
@@ -159,6 +162,6 @@
         grid-row-end: -1;
     }
     .events{
-        margin: 0px 20px 0px 20px;
+        margin: 20px 20px 0px 20px;
     }
 }

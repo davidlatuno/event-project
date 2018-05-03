@@ -359,6 +359,7 @@ $(document).ready(function () {
             window.reload;
         }).then(function () {
             renderButtons();
+            $("#preference").val("");
         })
     });
 
@@ -374,6 +375,7 @@ $(document).ready(function () {
             window.reload;
         }).then(function () {
             renderButtons();
+            
         })
 
     })
